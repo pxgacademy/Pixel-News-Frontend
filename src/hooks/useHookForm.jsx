@@ -11,6 +11,8 @@ const HookForm = ({
   btnStyle = "btn btn-info text-white mt-4 w-full",
 }) => {
   const [isEye, setIsEye] = useState(false);
+  const inputStyle =
+    "bg-white mt-1 border border-darkFive rounded-lg p-3 w-full outline-none focus:border-darkBlue";
 
   // react hook form
   const {
@@ -39,13 +41,13 @@ const HookForm = ({
           <label htmlFor={field.name} className="ml-2">
             {field.label}
           </label>
-          {field?.fieldType === "textarea" ? (
+          {field?.fieldName === "textarea" ? (
             <textarea
               id={field.name}
               type={field?.type || "text"}
               placeholder={field?.placeholder || "type here"}
               {...register(field.name, field.validation)}
-              className="bg-white mt-1 border border-darkFive rounded-lg p-3 w-full outline-none focus:border-darkBlue"
+              className={`${field?.style} ${inputStyle}`}
             />
           ) : (
             <label className="relative">
@@ -60,12 +62,12 @@ const HookForm = ({
                 }
                 placeholder={field?.placeholder || "type here"}
                 {...register(field.name, field.validation)}
-                className="bg-white mt-1 border border-darkFive rounded-lg p-3 w-full outline-none focus:border-darkBlue"
+                className={field?.style ? field.style : inputStyle}
               />
               {field?.isEye && (
                 <button
                   onClick={(e) => handleEye(e)}
-                  className="absolute right-4 bottom-4"
+                  className="absolute right-4 bottom-[17px]"
                 >
                   {isEye ? <FaEyeSlash /> : <FaEye />}
                 </button>

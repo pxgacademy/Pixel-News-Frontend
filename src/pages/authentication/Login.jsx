@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionContainer from "../../components/container/SectionContainer";
 import HookForm from "../../hooks/useHookForm";
 
@@ -19,18 +20,9 @@ const Login = () => {
       label: "Password",
       type: "password",
       isEye: true,
-      validation: {
-        required: true,
-        minLength: 6,
-        maxLength: 20,
-        pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*[0-9])/,
-      },
+      validation: { required: true },
       errorMessages: {
         required: "Password is required",
-        minLength: "Password must be more than 6 characters",
-        maxLength: "Password must be less than 20 characters",
-        pattern:
-          "Password must include one uppercase, one lowercase, one number, and one special character",
       },
     },
   ];
@@ -45,8 +37,14 @@ const Login = () => {
       <h1 className="text-2xl md:text-4xl font-bold text-center font-davidLibre">
         Welcome Back!
       </h1>
-      <div className="w-full max-w-lg mx-auto mt-6">
+      <div className="w-full max-w-lg mx-auto mt-6 bg-white p-6 rounded-xl shadow-xl">
         <HookForm fields={fields} onSubmit={handleSubmit} btnName="Login" />
+        <p className="text-center text-sm mt-2">
+          Do not have an account? Please{" "}
+          <Link to="/register" className="text-info">
+            Register
+          </Link>
+        </p>
       </div>
     </SectionContainer>
   );
