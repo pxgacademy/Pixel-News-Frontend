@@ -18,6 +18,7 @@ const Login = () => {
       name: "password",
       label: "Password",
       type: "password",
+      isEye: true,
       validation: {
         required: true,
         minLength: 6,
@@ -34,8 +35,9 @@ const Login = () => {
     },
   ];
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data, reset) => {
     console.log(data);
+    reset();
   };
 
   return (
