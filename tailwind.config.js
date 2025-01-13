@@ -8,11 +8,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkOne: "#15191E",
-        darkTwo: "#191E24",
-        darkThree: "#1D232A",
-        lightTwo: "#F2F2F2",
-        lightThree: "#E5E6E6",
+        darkOne: "#22272E",
+        darkTwo: "#484D56",
+        darkThree: "#696E7C",
+        darkFour: "#8F939D",
+        darkFive: "#C9CBD0",
+        darkBlue: "#28416E",
+      },
+      fontFamily: {
+        girassol: ["Girassol", "serif"],
+        davidLibre: ["David Libre", "serif"],
+        inter: ["Inter", "serif"],
+        righteous: ["Righteous", "serif"],
       },
     },
   },
