@@ -18,5 +18,10 @@ html {
   input[type="file"]::file-selector-button {
     @apply px-3 border-none rounded-md bg-darkThree/20 cursor-pointer active:scale-95 active:translate-y-1;
   }
+
+    /* Login page Captcha styles*/
+    #captcha > div {
+      @apply flex items-center gap-x-3;
+    }
 }
 

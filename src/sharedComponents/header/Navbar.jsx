@@ -3,6 +3,8 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
+import { ImGift } from "react-icons/im";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user } = useContextValue();
@@ -34,6 +36,8 @@ const Navbar = () => {
     </>
   );
 
+  console.log(user);
+
   return (
     <nav className="flex items-center justify-between">
       <div className="text-lg md:hidden">
@@ -45,11 +49,22 @@ const Navbar = () => {
         {navLinks}
       </div>
 
-      <div>
+      <div className="flex items-center">
         {user ? (
           <>
             <button className="btn btn-sm btn-ghost mr-2">Logout</button>
-            <NavLink to="/my-profile">Profile</NavLink>
+            <Link to="/my-profile">
+              <button className="w-11 h-11 border border-darkFour rounded-full overflow-hidden p-1">
+                {user?.photoURL ? (
+                  <img
+                    className="w-full h-full object-cover rounded-full"
+                    src={user.photoURL}
+                  />
+                ) : (
+                  <FaUser />
+                )}
+              </button>
+            </Link>
           </>
         ) : (
           <Link to="/login">
