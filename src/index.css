@@ -23,5 +23,9 @@ html {
     #captcha > div {
       @apply flex items-center gap-x-3;
     }
-}
+
+  }
+    .css-13cymwt-control{
+   min-height: 500px;   
+    }
 
