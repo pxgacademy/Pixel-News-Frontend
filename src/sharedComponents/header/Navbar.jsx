@@ -3,12 +3,16 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
-import { ImGift } from "react-icons/im";
 import { FaUser } from "react-icons/fa";
+import useSignoutUser from "../../hooks/useSignoutUser";
 
 const Navbar = () => {
   const { user } = useContextValue();
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [signOut] = useSignoutUser()
+
+
+
 
   const navLinks = (
     <>
@@ -36,7 +40,6 @@ const Navbar = () => {
     </>
   );
 
-  console.log(user);
 
   return (
     <nav className="flex items-center justify-between">
@@ -52,7 +55,7 @@ const Navbar = () => {
       <div className="flex items-center">
         {user ? (
           <>
-            <button className="btn btn-sm btn-ghost mr-2">Logout</button>
+            <button onClick={signOut} className="btn btn-sm btn-ghost mr-2">Logout</button>
             <Link to="/my-profile">
               <button className="w-11 h-11 border border-darkFour rounded-full overflow-hidden p-1">
                 {user?.photoURL ? (
