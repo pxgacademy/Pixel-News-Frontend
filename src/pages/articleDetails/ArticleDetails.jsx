@@ -33,8 +33,12 @@ const ArticleDetails = () => {
         </p>
         <p className="my-2 text-justify">{description}</p>
         <p>Published By:</p>
-        <p>Name: <span className="font-semibold">{publisher.name}</span></p>
-        <p>Email: <span className="font-semibold">{publisher.email}</span></p>
+        <p>
+          Name: <span className="font-semibold">{publisher.name}</span>
+        </p>
+        <p>
+          Email: <span className="font-semibold">{publisher.email}</span>
+        </p>
       </div>
     </SectionContainer>
   );

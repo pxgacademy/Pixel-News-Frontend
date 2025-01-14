@@ -16,10 +16,14 @@ import {
 
 function APIcontext({ children }) {
   const API_LINK = import.meta.env.VITE_API_LINK;
-  const [isDark, setIsDark] = useState(false);
+  const googleProvider = new GoogleAuthProvider();
+  // const [isDark, setIsDark] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider();
+  const [userRole, setUserRole] = useState({
+    isAdmin: false,
+    isPremium: false,
+  });
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -52,7 +56,34 @@ function APIcontext({ children }) {
       const sendToken = async () => {
         const user = { email: currentUser?.email };
         try {
-          await axios.post(`${API_LINK}/jwt`, user, { withCredentials: true });
+          const { data } = await axios.post(`${API_LINK}/jwt`, user, {
+            withCredentials: true,
+          });
+          if (data?.message === "JWT token successfully created") {
+            const { data } = await axios.get(
+              `${API_LINK}/users/role/${currentUser?.email}`,
+              { withCredentials: true }
+            );
+            // if (data?.isPremium) {
+            //   const date = new Date();
+            //   const presentDate = date.getTime();
+            //   const expiryDate =
+            //     data.isPremium?.paidDate && parseInt(data.isPremium?.paidDate);
+            //   if (presentDate > expiryDate) {
+            //     data.isPremium = false;
+            //     setUserRole(data);
+            //     const { data: res } = await axios.patch(
+            //       `${API_LINK}/users/role/update/${currentUser?.email}`,
+            //       { isPremium: false },
+            //       {
+            //         withCredentials: true,
+            //       }
+            //     );
+            //     console.log(res);
+            //   }
+            // } else 
+            setUserRole(data);
+          }
         } catch (err) {
           Swal.fire({
             title: err.message,
@@ -66,6 +97,7 @@ function APIcontext({ children }) {
       // delete jwt token
       const deleteToken = async () => {
         try {
+          setUserRole({ isAdmin: false, isPremium: false });
           await axios.delete(`${API_LINK}/logout`, { withCredentials: true });
         } catch (err) {
           Swal.fire({
@@ -86,8 +118,8 @@ function APIcontext({ children }) {
   }, []);
 
   const value = {
-    isDark,
-    setIsDark,
+    userRole,
+    setUserRole,
     user,
     setUser,
     loading,
