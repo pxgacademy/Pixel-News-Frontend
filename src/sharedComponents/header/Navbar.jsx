@@ -80,7 +80,7 @@ const Navbar = () => {
 
       {/* Mobile navbar */}
       <div
-        className={`absolute top-0 transition-all duration-300 ${
+        className={`md:hidden absolute top-0 z-50 transition-all duration-300 ${
           isNavOpen ? "left-0" : "-left-[110%]"
         } w-full h-screen py-10 px-5 bg-[#FDF1D3]`}
       >
