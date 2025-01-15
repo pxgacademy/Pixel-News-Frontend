@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import ArticleDetails from "../pages/articleDetails/ArticleDetails";
 import PremiumRoutes from "./PremiumRoutes";
 import PremiumArticles from "../pages/premiumArticles/PremiumArticles";
+import Subscription from "../pages/subscription/Subscription";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ export const router = createBrowserRouter([
           <PremiumRoutes>
             <PremiumArticles />
           </PremiumRoutes>
+        ),
+      },
+      {
+        path: "subscriptions",
+        element: (
+          <PrivateRoutes>
+            <Subscription />
+          </PrivateRoutes>
         ),
       },
       {
