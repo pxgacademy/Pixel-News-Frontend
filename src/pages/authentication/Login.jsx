@@ -52,7 +52,7 @@ const Login = () => {
   const handleSubmit = async (data, reset) => {
     if (!validateCaptcha(captcha)) {
       setErrMsg("Captcha didn't match");
-      return;
+      // TODO: return;
     } else {
       setErrMsg(null);
       setCaptcha("");

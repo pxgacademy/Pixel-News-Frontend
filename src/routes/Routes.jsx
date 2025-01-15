@@ -8,6 +8,7 @@ import AllArticles from "../pages/allArticles/AllArticles";
 import PrivateRoutes from "./PrivateRoutes";
 import ArticleDetails from "../pages/articleDetails/ArticleDetails";
 import PremiumRoutes from "./PremiumRoutes";
+import PremiumArticles from "../pages/premiumArticles/PremiumArticles";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,14 @@ export const router = createBrowserRouter([
       {
         path: "all-articles",
         element: <AllArticles />,
+      },
+      {
+        path: "premium-articles",
+        element: (
+          <PremiumRoutes>
+            <PremiumArticles />
+          </PremiumRoutes>
+        ),
       },
       {
         path: "articles/details/:id",

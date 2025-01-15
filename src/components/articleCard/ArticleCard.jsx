@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
 import PremiumBadge from "../badges/PremiumBadge";
 import ViewCountBadge from "../badges/ViewCountBadge";
+import { usePublicAPI } from "../../hooks/useAPI_Links";
 
 const ArticleCard = ({ article }) => {
   const { userRole } = useContextValue();
+  const publicAPI = usePublicAPI()
   const { _id, image, title, description, viewCount, publisher, isPaid } =
     article;
+
+    const handleViewCount = async() => {
+      const {data} = await publicAPI.patch(`/articles/view-count/${_id}`, {})
+      console.log(data);
+    }
 
   return (
     <div
@@ -45,7 +52,7 @@ const ArticleCard = ({ article }) => {
         </button>
       ) : (
         <Link to={`/articles/details/${_id}`}>
-          <button className="mt-4 btn btn-info text-white w-full">
+          <button onClick={handleViewCount} className="mt-4 btn btn-info text-white w-full">
             Details
           </button>
         </Link>
