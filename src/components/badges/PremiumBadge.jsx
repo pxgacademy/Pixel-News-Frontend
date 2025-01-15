@@ -1,13 +1,10 @@
-import premiumIcon from "../../assets/icons/Premium.png";
+import Lottie from "lottie-react";
+import lottie from "../../assets/lottie/premium.json";
 
 const PremiumBadge = () => {
   return (
     <div className="absolute left-3 top-3 w-12 h-12 overflow-hidden rounded-full shadow-xl">
-      <img
-        className="w-full h-full object-cover"
-        src={premiumIcon}
-        alt="premium"
-      />
+      <Lottie animationData={lottie} />
     </div>
   );
 };
