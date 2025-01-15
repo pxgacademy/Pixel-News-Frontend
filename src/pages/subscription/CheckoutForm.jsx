@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useSecureAPI } from "../../hooks/useAPI_Links";
 import useContextValue from "../../hooks/useContextValue";
 
-const CheckoutForm = ({ total_price = 0 }, handleModal) => {
+const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const [processing, setProcessing] = useState(false);
@@ -18,11 +18,11 @@ const CheckoutForm = ({ total_price = 0 }, handleModal) => {
 
   useEffect(() => {
     const getStripeSecret = async () => {
-      if (total_price <= 0) return setClientSecret(null);
+      if (priceAndTime.price <= 0) return setClientSecret(null);
       setProcessing(true);
       try {
         const { data } = await secureAPI.post("/create-payment-intent", {
-          price: total_price,
+          price: priceAndTime.price,
         });
         setClientSecret(data.clientSecret);
         setErrorMessage(null);
@@ -33,7 +33,7 @@ const CheckoutForm = ({ total_price = 0 }, handleModal) => {
       }
     };
     getStripeSecret();
-  }, [secureAPI, total_price]);
+  }, [secureAPI, priceAndTime?.price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,28 +80,30 @@ const CheckoutForm = ({ total_price = 0 }, handleModal) => {
         // save the payment history in the database
         const history = {
           email: user?.email,
-          price: total_price,
+          priceAndTime: priceAndTime,
           trx_id: paymentIntent.id,
         };
 
-        const { data } = await secureAPI.post("/subscription-histories", history);
-        console.log(data);
-        // if (
-        //   data?.deleteOrders?.deletedCount > 0 &&
-        //   data?.paymentHistory?.insertedId
-        // ) {
-        //   handleModal(false);
-        //   setProcessing(false);
-        //   setTrxId(paymentIntent.id);
-        //   Swal.fire({
-        //     title: "Payment Successful!",
-        //     text: "Thank you for your purchase!",
-        //     icon: "success",
-        //     showConfirmButton: false,
-        //     position: "center",
-        //     timer: 2000,
-        //   });
-        // }
+        const { data } = await secureAPI.post(
+          "/subscription-histories",
+          history
+        );
+        console.log(data?.paymentHistory?.insertedId);
+        console.log(data?.updateUser?.modifiedCount);
+        if (data?.paymentHistory?.insertedId && data?.updateUser?.modifiedCount > 0) 
+        {
+          handleModal(false);
+          setProcessing(false);
+          setTrxId(paymentIntent.id);
+          Swal.fire({
+            title: "Payment Successful!",
+            text: "Thank you for subscription!",
+            icon: "success",
+            showConfirmButton: false,
+            position: "center",
+            timer: 2000,
+          });
+        }
       }
     }
   };
@@ -175,7 +177,7 @@ const CheckoutForm = ({ total_price = 0 }, handleModal) => {
 };
 
 CheckoutForm.propTypes = {
-  total_price: PropTypes.number.isRequired,
+  priceAndTime: PropTypes.object.isRequired,
   handleModal: PropTypes.func,
 };
 

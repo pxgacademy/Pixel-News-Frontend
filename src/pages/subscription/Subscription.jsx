@@ -10,7 +10,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
 const Subscription = () => {
-  const [price, setPrice] = useState(0);
+  const [priceAndTime, setPriceAndTime] = useState({ price: 0, time: 0 });
 
   // handle modal
   const handleModal = (action) => {
@@ -19,6 +19,12 @@ const Subscription = () => {
     else modal.close();
   };
 
+  const handleChangePeriod = (e) => {
+    const value = parseInt(e.target.value);
+    if (value === 1) setPriceAndTime({ price: 2, time: 1 });
+    if (value === 7200) setPriceAndTime({ price: 15, time: 7200 });
+    if (value === 14400) setPriceAndTime({ price: 25, time: 14400 });
+  };
 
   return (
     <>
@@ -63,20 +69,20 @@ const Subscription = () => {
           <h4 className="text-center font-girassol text-3xl mb-2">Payment</h4>
           <div className="p-2 flex gap-x-3">
             <select
-              onChange={(e) => setPrice(parseInt(e.target.value))}
+              onChange={(e) => handleChangePeriod(e)}
               className="select select-bordered w-full max-w-72"
             >
               <option className="hidden" value={0}>
                 Select a Period
               </option>
-              <option value={2}>1 minute</option>
-              <option value={15}>5 days</option>
-              <option value={25}>10 days</option>
+              <option value={1}>1 minute</option>
+              <option value={7200}>5 days</option>
+              <option value={14400}>10 days</option>
             </select>
             <label className="relative flex items-center">
               <input
                 type="text"
-                value={price}
+                value={priceAndTime.price}
                 readOnly
                 className="input input-bordered w-full max-w-xs pl-7 text-lg"
               />
@@ -87,7 +93,7 @@ const Subscription = () => {
           </div>
           <div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm total_price={price} handleModal={handleModal} />
+              <CheckoutForm priceAndTime={priceAndTime} handleModal={handleModal} />
             </Elements>
           </div>
         </div>
