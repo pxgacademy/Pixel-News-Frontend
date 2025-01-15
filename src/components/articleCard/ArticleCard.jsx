@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import TextSnippet from "../textSnippet/TextSnippet";
-import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
-import PremiumBadge from "../premiumBadge/PremiumBadge";
+import PremiumBadge from "../badges/PremiumBadge";
+import ViewCountBadge from "../badges/ViewCountBadge";
 
 const ArticleCard = ({ article }) => {
   const { userRole } = useContextValue();
@@ -16,21 +16,25 @@ const ArticleCard = ({ article }) => {
         isPaid && "border border-yellow-600"
       }`}
     >
-      <p className="absolute shadow-md right-5 top-5 flex items-center gap-x-2 rounded-lg bg-white py-1 px-3">
-        <span>
-          <FaEye />
-        </span>
-        <span>{viewCount}</span>
-      </p>
+      <ViewCountBadge count={viewCount} />
       {isPaid && <PremiumBadge />}
       <img className="w-full h-72 object-cover rounded-lg" src={image} alt="" />
       <h2 className="mt-3 text-2xl font-semibold font-davidLibre">{title}</h2>
       <p className="mt-2">
         <TextSnippet text={description} />
       </p>
-      <p className="mt-3 underline">Publisher:</p>
-      <p>Name: {publisher.name}</p>
-      <p className="grow">Email: {publisher.email}</p>
+
+      <div className="grow mt-3 flex items-center gap-x-2">
+        <img
+          className="w-14 max-h-10 object-cover"
+          src={publisher?.photo}
+          alt=""
+        />
+        <div>
+          <p className="underline">Publisher:</p>
+          <p className="font-semibold">{publisher.name}</p>
+        </div>
+      </div>
 
       {isPaid && !userRole.isPremium ? (
         <button
