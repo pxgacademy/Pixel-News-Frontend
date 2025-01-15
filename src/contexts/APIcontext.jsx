@@ -56,33 +56,36 @@ function APIcontext({ children }) {
       const sendToken = async () => {
         const user = { email: currentUser?.email };
         try {
-          const { data } = await axios.post(`${API_LINK}/jwt`, user, {
-            withCredentials: true,
-          });
-          if (data?.message === "JWT token successfully created") {
-            const { data } = await axios.get(
-              `${API_LINK}/users/role/${currentUser?.email}`,
-              { withCredentials: true }
+          const token = await axios.post(`${API_LINK}/jwt`, user);
+          if (token?.data?.token) {
+            localStorage.setItem("access_token", token.data.token);
+            const result = await axios.get(
+              `${API_LINK}/users/role/${currentUser?.email}`
             );
-            // if (data?.isPremium) {
-            //   const date = new Date();
-            //   const presentDate = date.getTime();
-            //   const expiryDate =
-            //     data.isPremium?.paidDate && parseInt(data.isPremium?.paidDate);
-            //   if (presentDate > expiryDate) {
-            //     data.isPremium = false;
-            //     setUserRole(data);
-            //     const { data: res } = await axios.patch(
-            //       `${API_LINK}/users/role/update/${currentUser?.email}`,
-            //       { isPremium: false },
-            //       {
-            //         withCredentials: true,
-            //       }
-            //     );
-            //     console.log(res);
-            //   }
-            // } else 
-            setUserRole(data);
+
+            if (result?.data?.isPremium) {
+              const date = Date.now();
+              const expiryDate = result.data?.paidDate;
+
+              if (date > expiryDate) {
+                setUserRole({ isAdmin: result.data.isAdmin, isPremium: false });
+                const update = await axios.patch(
+                  `${API_LINK}/users/role/update/${currentUser?.email}`,
+                  { isPremium: false, paidDate: 0 }
+                );
+                console.log(update.data);
+              } else {
+                setUserRole({
+                  isAdmin: result.data?.isAdmin,
+                  isPremium: result.data?.isPremium,
+                });
+              }
+            } else {
+              setUserRole({
+                isAdmin: result.data?.isAdmin,
+                isPremium: result.data?.isPremium,
+              });
+            }
           }
         } catch (err) {
           Swal.fire({
@@ -98,7 +101,7 @@ function APIcontext({ children }) {
       const deleteToken = async () => {
         try {
           setUserRole({ isAdmin: false, isPremium: false });
-          await axios.delete(`${API_LINK}/logout`, { withCredentials: true });
+          localStorage.removeItem("access_token");
         } catch (err) {
           Swal.fire({
             title: err.message,

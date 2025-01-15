@@ -16,12 +16,21 @@ const usePublicAPI = () => {
 // Secure API instance
 const secureAPI = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true,
 });
 
 // Hook to use secure API
 const useSecureAPI = () => {
   const { signOutUser } = useContextValue();
+  // add request interceptor to add access token to the header
+  secureAPI.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem("access_token");
+      if (token) config.headers.authorization = `Bearer ${token}`;
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
+
   // Adding response interceptor to handle errors
   secureAPI.interceptors.response.use(
     (response) => response,

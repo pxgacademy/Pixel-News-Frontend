@@ -10,13 +10,11 @@ import {
 import { useEffect, useState } from "react";
 import useContextValue from "../../hooks/useContextValue";
 import Swal from "sweetalert2";
-import { usePublicAPI } from "../../hooks/useAPI_Links";
 
 const Login = () => {
-  const { signInUser, setUser, signOutUser } = useContextValue();
+  const { signInUser, setUser, } = useContextValue();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const publicAPI = usePublicAPI();
   const [captcha, setCaptcha] = useState("");
   const [errMsg, setErrMsg] = useState(null);
   useEffect(() => {
@@ -62,18 +60,6 @@ const Login = () => {
       const { user } = await signInUser(data.email, data.password);
       if (user?.email) {
         setUser(user);
-        const { data } = await publicAPI.patch(`/users/${user.email}`, {
-          lastLoginAt: user?.metadata?.lastLoginAt,
-        });
-        if (data?.modifiedCount <= 0) {
-          signOutUser();
-          Swal.fire({
-            title: "Error!",
-            text: "Failed to update user, Login again!",
-            icon: "error",
-          });
-          return;
-        }
         reset();
         Swal.fire({
           title: "Login Successful!",
@@ -83,6 +69,12 @@ const Login = () => {
           timer: 2000,
         });
         navigate(state?.goTo || "/");
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Invalid email or password",
+          icon: "error",
+        });
       }
     } catch (error) {
       Swal.fire({

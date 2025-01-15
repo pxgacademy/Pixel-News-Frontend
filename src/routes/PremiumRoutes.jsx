@@ -9,8 +9,12 @@ const PremiumRoutes = ({ children }) => {
 
   if (loading) return <Loading />;
 
+  // console.log(userRole?.isAdmin);
+  // console.log(userRole.isPremium);
+
   if (user && (userRole?.isAdmin || userRole.isPremium)) return children;
   else {
+    // console.log('logging out from here');
     signOutUser();
     return <Navigate state={{ goTo: pathname }} to="/login" replace />;
   }
