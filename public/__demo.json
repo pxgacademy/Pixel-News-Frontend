@@ -1,0 +1,60 @@
+{
+    "image": "https://i.ibb.co.com/2kqHFGb/17.jpg",
+    "title": "Revolutionizing Education with Technology",
+    "description": "Technology is transforming the way we learn and teach, offering new opportunities for students and educators alike. This article explores the latest innovations in educational technology, including online learning platforms, virtual classrooms, and AI-driven tutoring systems. Interviews with educators and tech developers highlight the benefits and challenges of integrating technology into the classroom. The article also looks at the future of education, considering how emerging technologies could further revolutionize the learning experience and make education more accessible and inclusive.",
+    "publisher": {
+      "name": "Journal Media Group",
+      "photo": "https://i.ibb.co.com/sRF4frP/1631348940823.jpg"
+    },
+    "tags": ["edtech", "learning", "innovation"],
+    "viewCount": 1735,
+    "isPaid": false,
+    "creator": "example@example.com",
+    "date": {
+      "$date": "2025-01-15T11:16:07.367Z"
+    },
+    "status": "pending"
+  }
+
+  give me 10 json like that. isPaid will be true or false. status will be pending or approved. viewCount will be any random number. description should be large. image will be publisher's photo link.
+  
+creator should be from here:
+alice-green@example.com
+john-doe@example.com
+emma-brown@example.com
+david-johnson@example.com
+sophia-white@example.com
+
+tags should be from here:
+politics, business, technology, health, science, entertainment, sports, lifestyle,world_news, environment, education, opinion, breaking_news, economy, finance, travel, food,culture, technology_reviews, fashion, weather, local_news, real_estate, jobs, art,automotive, books, movies, music, television
+  
+publisher should be from here:
+"name": "Hearst Communications",
+"photo": "https://i.ibb.co.com/hXPsVGT/357447173-743461161118030-4431007613993341830-n.jpg"
+
+"name": "Journal Media Group",
+"photo": "https://i.ibb.co.com/sRF4frP/1631348940823.jpg"
+
+"name": "Deccan Herald",
+"photo": "https://i.ibb.co.com/d4R74HP/image.png"
+
+"name": "The Tribune",
+"photo": "https://i.ibb.co.com/bbn3WsH/2.png"
+
+"name": "Harper Collins",
+"photo": "https://i.ibb.co.com/3vbS0dc/Fireand-Water-Logo-768x831.jpg"
+
+"name": "SImon and Schuster",
+"photo": "https://i.ibb.co.com/RgLHpjk/images.png"
+
+"name": "Hachette Book Group",
+"photo": "https://i.ibb.co.com/gdh40Nd/1631318547446.jpg"
+
+"name": "Osprey Publishing",
+"photo": "https://i.ibb.co.com/dPTC16Y/five-tips-publishing-own-book1.jpg"
+
+"name": "Baen",
+"photo": "https://i.ibb.co.com/WcP6wdp/images.jpg"
+
+"name": "Kobo",
+"photo": "https://i.ibb.co.com/d4YP1qW/Rakuten-Kobo-Square-White-On-Red.png"
