@@ -25,9 +25,9 @@ export const router = createBrowserRouter([
       {
         path: "articles/details/:id",
         element: (
-          <PremiumRoutes>
+          <PrivateRoutes>
             <ArticleDetails />
-          </PremiumRoutes>
+          </PrivateRoutes>
         ),
       },
       {

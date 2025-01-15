@@ -3,24 +3,27 @@ import TextSnippet from "../textSnippet/TextSnippet";
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
+import PremiumBadge from "../premiumBadge/PremiumBadge";
 
 const ArticleCard = ({ article }) => {
   const { userRole } = useContextValue();
-  const { _id, image, title, description, viewCount, publisher } = article;
+  const { _id, image, title, description, viewCount, publisher, isPaid } =
+    article;
 
   return (
-    <div className="bg-white p-3 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default">
-      <p className="absolute right-5 top-5 flex items-center gap-x-2 rounded-lg bg-white py-1 px-3">
+    <div
+      className={`bg-white p-3 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default ${
+        isPaid && "border border-yellow-600"
+      }`}
+    >
+      <p className="absolute shadow-md right-5 top-5 flex items-center gap-x-2 rounded-lg bg-white py-1 px-3">
         <span>
           <FaEye />
         </span>
         <span>{viewCount}</span>
       </p>
-      <img
-        className="w-full max-h-72 object-cover rounded-lg"
-        src={image}
-        alt=""
-      />
+      {isPaid && <PremiumBadge />}
+      <img className="w-full h-72 object-cover rounded-lg" src={image} alt="" />
       <h2 className="mt-3 text-2xl font-semibold font-davidLibre">{title}</h2>
       <p className="mt-2">
         <TextSnippet text={description} />
@@ -29,21 +32,20 @@ const ArticleCard = ({ article }) => {
       <p>Name: {publisher.name}</p>
       <p className="grow">Email: {publisher.email}</p>
 
-      <Link
-        onClick={(e) => {
-          userRole.isPremium ? "" : userRole.isAdmin ? "" : e.preventDefault();
-        }}
-        to={`/articles/details/${_id}`}
-      >
+      {isPaid && !userRole.isPremium ? (
         <button
-          disabled={
-            userRole.isPremium ? false : userRole.isAdmin ? false : true
-          }
-          className="mt-4 btn w-full"
+          disabled
+          className="mt-4 btn w-full disabled:text-darkTwo disabled:cursor-not-allowed"
         >
-          Details
+          Get premium to see
         </button>
-      </Link>
+      ) : (
+        <Link to={`/articles/details/${_id}`}>
+          <button className="mt-4 btn btn-info text-white w-full">
+            Details
+          </button>
+        </Link>
+      )}
     </div>
   );
 };
