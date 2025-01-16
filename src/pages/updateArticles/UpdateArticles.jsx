@@ -1,7 +1,6 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import SectionContainer from "../../components/container/SectionContainer";
 import Loading from "../../components/loading/Loading";
-import { useSecureDataLoader } from "../../hooks/useDataLoader";
 import useContextValue from "../../hooks/useContextValue";
 import Swal from "sweetalert2";
 import { Controller, useForm } from "react-hook-form";
@@ -13,7 +12,6 @@ import ReactSelect from "../../components/formInputs/ReactSelect";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import reactSelectOptions from "../../components/formInputs/ReactSelectOptions";
-
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const UpdateArticles = () => {
@@ -22,6 +20,7 @@ const UpdateArticles = () => {
   const publicAPI = usePublicAPI();
   const secureAPI = useSecureAPI();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { data: article, isLoading } = useQuery({
     queryKey: ["update-articles", user?.email, id],
@@ -40,7 +39,6 @@ const UpdateArticles = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -107,18 +105,23 @@ const UpdateArticles = () => {
             `/articles/${_id}`,
             data
           );
-          // TODO: check data successfully updated or not
-          console.log(updatedData);
-
-          // show success message
-          Swal.fire({
-            title: "Updated!",
-            text: "The data has been updated successfully!",
-            icon: "success",
-            showConfirmButton: false,
-            position: "center",
-            timer: 2000,
-          });
+          if (updatedData?.modifiedCount > 0) {
+            navigate("/my-articles");
+            // show success message
+            Swal.fire({
+              title: "Updated!",
+              text: "The data has been updated successfully!",
+              icon: "success",
+              showConfirmButton: false,
+              position: "center",
+              timer: 2000,
+            });
+          } else
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to update article!",
+              icon: "error",
+            });
         } catch (error) {
           Swal.fire({
             title: "Error!",
