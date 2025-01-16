@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import loaderGif from "../../assets/loading/loader3.gif";
+import loaderGif from "../../assets/lottie/Loading.json";
+import Lottie from "lottie-react";
 
 const Loading = ({
   width = "w-full",
@@ -14,7 +15,7 @@ const Loading = ({
 
   return (
     <section className={`${style} flex items-center justify-center`}>
-      <img src={loaderGif} alt="Loading...." />
+      <Lottie animationData={loaderGif} loop={true} />
     </section>
   );
 };
