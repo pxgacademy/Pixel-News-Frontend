@@ -7,12 +7,9 @@ import { FaUser } from "react-icons/fa";
 import useSignoutUser from "../../hooks/useSignoutUser";
 
 const Navbar = () => {
-  const { user } = useContextValue();
+  const { user, userRole } = useContextValue();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [signOut] = useSignoutUser()
-
-
-
+  const [signOut] = useSignoutUser();
 
   const navLinks = (
     <>
@@ -22,24 +19,29 @@ const Navbar = () => {
       <NavLink onClick={() => setIsNavOpen(false)} to="/all-articles">
         All Articles
       </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
-        Premium Articles
-      </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/subscriptions">
-        Subscription
-      </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/add-articles">
-        Add Articles
-      </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/my-articles">
-        My Articles
-      </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/dashboard">
-        Dashboard
-      </NavLink>
+      {user && (
+        <>
+          <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
+            Premium Articles
+          </NavLink>
+          <NavLink onClick={() => setIsNavOpen(false)} to="/subscriptions">
+            Subscription
+          </NavLink>
+          <NavLink onClick={() => setIsNavOpen(false)} to="/add-articles">
+            Add Articles
+          </NavLink>
+          <NavLink onClick={() => setIsNavOpen(false)} to="/my-articles">
+            My Articles
+          </NavLink>
+        </>
+      )}
+      {userRole.isAdmin && (
+        <NavLink onClick={() => setIsNavOpen(false)} to="/dashboard">
+          Dashboard
+        </NavLink>
+      )}
     </>
   );
-
 
   return (
     <nav className="flex items-center justify-between">
@@ -55,7 +57,9 @@ const Navbar = () => {
       <div className="flex items-center">
         {user ? (
           <>
-            <button onClick={signOut} className="btn btn-sm btn-ghost mr-2">Logout</button>
+            <button onClick={signOut} className="btn btn-sm btn-ghost mr-2">
+              Logout
+            </button>
             <Link to="/my-profile">
               <button className="w-11 h-11 border border-darkFour rounded-full overflow-hidden p-1">
                 {user?.photoURL ? (
