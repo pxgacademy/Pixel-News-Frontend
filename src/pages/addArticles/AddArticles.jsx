@@ -39,7 +39,7 @@ const AddArticles = () => {
         data.image = res.data.display_url;
         data.tags = data.tags.map((tag) => tag.value);
         data.viewCount = 0;
-        data.isPaid = !!userRole.isPremium;
+        data.isPaid = false;
         data.creator = user?.email;
         const { data: result } = await secureAPI.post("/articles", data);
         if (result.message==='Failed to insert article'){

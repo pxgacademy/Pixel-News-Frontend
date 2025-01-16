@@ -6,6 +6,7 @@ import { useSecureAPI } from "../../hooks/useAPI_Links";
 import useContextValue from "../../hooks/useContextValue";
 
 const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
+  const { user, userRole, setUserRole } = useContextValue();
   const [errorMessage, setErrorMessage] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const [processing, setProcessing] = useState(false);
@@ -14,7 +15,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
   const stripe = useStripe();
   const elements = useElements();
   const secureAPI = useSecureAPI();
-  const { user } = useContextValue();
 
   useEffect(() => {
     const getStripeSecret = async () => {
@@ -90,10 +90,17 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
         );
         console.log(data?.paymentHistory?.insertedId);
         console.log(data?.updateUser?.modifiedCount);
-        if (data?.paymentHistory?.insertedId && data?.updateUser?.modifiedCount > 0) 
-        {
+        if (
+          data?.paymentHistory?.insertedId &&
+          data?.updateUser?.modifiedCount > 0
+        ) {
           handleModal(false);
           setProcessing(false);
+          setUserRole(() => {
+            userRole.isPremium = true;
+            return userRole;
+          });
+
           setTrxId(paymentIntent.id);
           Swal.fire({
             title: "Payment Successful!",
@@ -156,22 +163,26 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
       {errorMessage && (
         <p className="text-error normal-case text-sm">{errorMessage}</p>
       )}
-      {trxId && (
-        <div className="normal-case text-sm cursor-default space-y-2 relative">
-          <p>Your payment was successful. Thank you for subscription!</p>
-          <p>
-            Your TrxID is:{" "}
-            <button onClick={(e) => handleCopyTrxId(e)} className="text-info">
-              {trxId}{" "}
-              {isCopyTrx && (
-                <span className="bg-slate-600 px-1 py-[2px] text-white rounded">
-                  Copied!
-                </span>
-              )}
-            </button>
-          </p>
-        </div>
-      )}
+
+      {
+        // TODO: delete trxId
+        trxId && (
+          <div className="normal-case text-sm cursor-default space-y-2 relative">
+            <p>Your payment was successful. Thank you for subscription!</p>
+            <p>
+              Your TrxID is:{" "}
+              <button onClick={(e) => handleCopyTrxId(e)} className="text-info">
+                {trxId}{" "}
+                {isCopyTrx && (
+                  <span className="bg-slate-600 px-1 py-[2px] text-white rounded">
+                    Copied!
+                  </span>
+                )}
+              </button>
+            </p>
+          </div>
+        )
+      }
     </form>
   );
 };

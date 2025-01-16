@@ -62,7 +62,6 @@ function APIcontext({ children }) {
             const result = await axios.get(
               `${API_LINK}/users/role/${currentUser?.email}`
             );
-
             if (result?.data?.isPremium) {
               const date = Date.now();
               const expiryDate = result.data?.paidDate;
@@ -75,16 +74,12 @@ function APIcontext({ children }) {
                 );
                 console.log(update.data);
               } else {
-                setUserRole({
-                  isAdmin: result.data?.isAdmin,
-                  isPremium: result.data?.isPremium,
-                });
+                delete result.data.paidDate;
+                setUserRole(result.data);
               }
             } else {
-              setUserRole({
-                isAdmin: result.data?.isAdmin,
-                isPremium: result.data?.isPremium,
-              });
+              delete result.data.paidDate;
+              setUserRole(result.data);
             }
           }
         } catch (err) {

@@ -5,7 +5,7 @@ import { useSecureDataLoader } from "../../hooks/useDataLoader";
 
 const PremiumArticles = () => {
   const [articles = [], isLoading] = useSecureDataLoader("/articles/premium");
-  console.log(articles);
+
 
   if (isLoading) return <Loading />;
   return (

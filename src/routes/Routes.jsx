@@ -10,6 +10,9 @@ import ArticleDetails from "../pages/articleDetails/ArticleDetails";
 import PremiumRoutes from "./PremiumRoutes";
 import PremiumArticles from "../pages/premiumArticles/PremiumArticles";
 import Subscription from "../pages/subscription/Subscription";
+import MyArticles from "../pages/myArticles/MyArticles";
+
+// const API_LINK = import.meta.env.VITE_API_LINK
 
 export const router = createBrowserRouter([
   {
@@ -27,9 +30,9 @@ export const router = createBrowserRouter([
       {
         path: "premium-articles",
         element: (
-          <PremiumRoutes>
+          <PrivateRoutes>
             <PremiumArticles />
-          </PremiumRoutes>
+          </PrivateRoutes>
         ),
       },
       {
@@ -37,6 +40,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Subscription />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "my-articles",
+        element: (
+          <PrivateRoutes>
+            <MyArticles />
           </PrivateRoutes>
         ),
       },
@@ -50,7 +61,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-articles",
-        element: <AddArticles />,
+        element: (
+          <PrivateRoutes>
+            <AddArticles />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",

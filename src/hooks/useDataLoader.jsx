@@ -15,6 +15,7 @@ const usePublicDataLoader = (link) => {
 };
 
 const useSecureDataLoader = (link) => {
+
   const secureAPI = useSecureAPI();
   const { data, isLoading, refetch } = useQuery({
     queryKey: [link],
