@@ -11,8 +11,10 @@ import PremiumRoutes from "./PremiumRoutes";
 import PremiumArticles from "../pages/premiumArticles/PremiumArticles";
 import Subscription from "../pages/subscription/Subscription";
 import MyArticles from "../pages/myArticles/MyArticles";
+import UpdateArticles from "../pages/updateArticles/UpdateArticles";
+import axios from "axios";
 
-// const API_LINK = import.meta.env.VITE_API_LINK
+const API_LINK = import.meta.env.VITE_API_LINK
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +60,15 @@ export const router = createBrowserRouter([
             <ArticleDetails />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "articles/update/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateArticles />
+          </PrivateRoutes>
+        ),
+        loader: () => axios(`${API_LINK}/publishers`)
       },
       {
         path: "add-articles",

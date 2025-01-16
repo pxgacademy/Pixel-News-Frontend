@@ -6,14 +6,23 @@ import useContextValue from "../../hooks/useContextValue";
 import PremiumBadge from "../../components/badges/PremiumBadge";
 
 const ArticleDetails = () => {
-  const { userRole, loading } = useContextValue();
+  const { userRole, user, loading } = useContextValue();
   const { id } = useParams();
   const [article = {}, isLoading] = useSecureDataLoader(`/articles/${id}`);
-  const { date, image, title, description, viewCount, publisher, isPaid } =
-    article;
+  const {
+    date,
+    image,
+    title,
+    description,
+    viewCount,
+    publisher,
+    isPaid,
+    creator,
+  } = article;
 
-  if (!loading && !isLoading) {
-    if (isPaid && !userRole?.isPremium) return <Navigate to="/" replace />;
+  if (!loading && !isLoading  && user?.email !== creator) {
+    if (isPaid && !userRole?.isPremium)
+      if (!userRole.isAdmin) return <Navigate to="/" replace />;
   }
   if (isLoading) return <Loading />;
   return (

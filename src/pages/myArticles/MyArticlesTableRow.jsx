@@ -5,20 +5,33 @@ import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
+import useDelete from "../../hooks/useDelete";
+import { Link } from "react-router-dom";
 
-const MyArticlesTableRow = ({ article, serial }) => {
-  const { title, status, isPaid, decline_message } = article || {};
+const MyArticlesTableRow = ({ article, serial, refetch }) => {
+  const [handleDelete] = useDelete();
+  const { _id, title, status, isPaid, decline_message } = article || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModal = (action) => {
     setIsModalOpen(action);
   };
 
+  const handleDeleteArticle = () => {
+    handleDelete({
+      link: `/articles/${_id}`,
+      refetch: refetch,
+      //   questionText: title,
+      questionText: "You will not be able to recover this article!",
+      successText: "Article has been deleted.",
+    });
+  };
+
   return (
     <>
       <tr>
         <th>{serial}</th>
-        <td>{title}</td>
+        <td className="min-w-96">{title}</td>
         <td className="text-center capitalize">
           {status === "decline" ? (
             <button
@@ -45,17 +58,24 @@ const MyArticlesTableRow = ({ article, serial }) => {
           )}
         </td>
         <td className="text-center">
-          <button className="btn btn-sm btn-circle btn-info text-white">
-            <FaEye />
-          </button>
+          <Link to={`/articles/details/${_id}`}>
+            <button className="btn btn-sm btn-circle btn-info text-white">
+              <FaEye />
+            </button>
+          </Link>
         </td>
         <td className="text-center">
-          <button className="btn btn-sm btn-circle btn-accent text-white">
-            <FaEdit />
-          </button>
+          <Link to={`/articles/update/${_id}`}>
+            <button className="btn btn-sm btn-circle btn-accent text-white">
+              <FaEdit />
+            </button>
+          </Link>
         </td>
         <td className="text-center">
-          <button className="btn btn-sm btn-warning text-white btn-circle">
+          <button
+            onClick={handleDeleteArticle}
+            className="btn btn-sm btn-warning text-white btn-circle"
+          >
             <FaTrashAlt />
           </button>
         </td>
@@ -87,6 +107,7 @@ const MyArticlesTableRow = ({ article, serial }) => {
 MyArticlesTableRow.propTypes = {
   article: PropTypes.object.isRequired,
   serial: PropTypes.number.isRequired,
+  refetch: PropTypes.func.isRequired,
 };
 
 export default MyArticlesTableRow;

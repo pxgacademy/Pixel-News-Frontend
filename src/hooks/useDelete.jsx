@@ -65,7 +65,7 @@ const useDelete = () => {
     });
   };
 
-  return handleDelete;
+  return [handleDelete];
 };
 
 export default useDelete;

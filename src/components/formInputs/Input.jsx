@@ -27,7 +27,7 @@ const Input = ({
         {...validation}
         className={`${!clearStyle && inputStyle} ${className}`}
       />
-      {errors[htmlFor]?.type === "required" && (
+      {errors && errors[htmlFor]?.type === "required" && (
         <span className="text-error inline-block mt-1 ml-2 lowercase">
           {label} is required
         </span>

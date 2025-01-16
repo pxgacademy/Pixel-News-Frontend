@@ -21,7 +21,7 @@ const MyArticles = () => {
     enabled: !!user?.email,
   });
 
-  console.log(articles);
+
 
   if (loading || isLoading) return <Loading />;
   return (
@@ -44,7 +44,12 @@ const MyArticles = () => {
           </thead>
           <tbody>
             {articles.map((article, i) => (
-              <MyArticlesTableRow key={i} article={article} serial={i + 1} />
+              <MyArticlesTableRow
+                key={i}
+                article={article}
+                serial={i + 1}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>

@@ -10,15 +10,12 @@ import { usePublicDataLoader } from "../../hooks/useDataLoader";
 import Loading from "../../components/loading/Loading";
 import PublisherSelect from "../../components/formInputs/PublisherSelect";
 
-
 const AddArticles = () => {
   const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
-  const { user, loading, userRole } = useContextValue();
+  const { user, loading } = useContextValue();
   const [publishers, isLoading] = usePublicDataLoader("/publishers");
   const publicAPI = usePublicAPI();
   const secureAPI = useSecureAPI();
-
-  console.log(!!userRole.isPremium);
 
   const {
     control,
@@ -38,16 +35,14 @@ const AddArticles = () => {
       if (res?.data?.display_url) {
         data.image = res.data.display_url;
         data.tags = data.tags.map((tag) => tag.value);
-        data.viewCount = 0;
-        data.isPaid = false;
         data.creator = user?.email;
         const { data: result } = await secureAPI.post("/articles", data);
-        if (result.message==='Failed to insert article'){
+        if (result.message === "Failed to insert article") {
           Swal.fire({
             title: "Try again!",
             text: "Failed to insert article",
             icon: "error",
-          })
+          });
           return;
         }
         if (result.insertedId) {
@@ -82,9 +77,9 @@ const AddArticles = () => {
 
   return (
     <SectionContainer>
-      <h5 className="text-center text-3xl md:text-4xl font-davidLibre">
+      <h4 className="text-center text-3xl md:text-4xl font-davidLibre">
         Add An Article
-      </h5>
+      </h4>
 
       <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -127,9 +122,15 @@ const AddArticles = () => {
               name="tags"
               control={control}
               defaultValue={[]}
+              rules={{ required: "Tags are required" }}
               render={({ field }) => <ReactSelect field={field} />}
             />
           </span>
+          {errors && errors.tags?.type === "required" && (
+            <span className="text-error inline-block mt-1 ml-2 lowercase">
+              Tags are required
+            </span>
+          )}
 
           <label className="block text-center mt-4">
             <button className="btn btn-wide btn-accent text-white">
@@ -143,9 +144,3 @@ const AddArticles = () => {
 };
 
 export default AddArticles;
-
-
-
-
-
-
