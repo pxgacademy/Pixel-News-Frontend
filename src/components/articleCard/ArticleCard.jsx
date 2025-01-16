@@ -8,14 +8,14 @@ import { usePublicAPI } from "../../hooks/useAPI_Links";
 
 const ArticleCard = ({ article }) => {
   const { userRole } = useContextValue();
-  const publicAPI = usePublicAPI()
+  const publicAPI = usePublicAPI();
   const { _id, image, title, description, viewCount, publisher, isPaid } =
     article;
 
-    const handleViewCount = async() => {
-      const {data} = await publicAPI.patch(`/articles/view-count/${_id}`, {})
-      console.log(data);
-    }
+  const handleViewCount = async () => {
+    const { data } = await publicAPI.patch(`/articles/view-count/${_id}`, {});
+    console.log(data);
+  };
 
   return (
     <div
@@ -44,15 +44,29 @@ const ArticleCard = ({ article }) => {
       </div>
 
       {isPaid && !userRole.isPremium ? (
-        <button
-          disabled
-          className="mt-4 btn w-full disabled:text-darkTwo disabled:cursor-not-allowed"
-        >
-          Get premium to see
-        </button>
+        userRole.isAdmin ? (
+          <Link to={`/articles/details/${_id}`}>
+            <button
+              onClick={handleViewCount}
+              className="mt-4 btn btn-info text-white w-full"
+            >
+              Details
+            </button>
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="mt-4 btn w-full disabled:text-darkTwo disabled:cursor-not-allowed"
+          >
+            Get premium to see
+          </button>
+        )
       ) : (
         <Link to={`/articles/details/${_id}`}>
-          <button onClick={handleViewCount} className="mt-4 btn btn-info text-white w-full">
+          <button
+            onClick={handleViewCount}
+            className="mt-4 btn btn-info text-white w-full"
+          >
             Details
           </button>
         </Link>
