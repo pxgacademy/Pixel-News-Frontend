@@ -92,7 +92,10 @@ const Subscription = () => {
           </div>
           <div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm priceAndTime={priceAndTime} handleModal={handleModal} />
+              <CheckoutForm
+                priceAndTime={priceAndTime}
+                handleModal={handleModal}
+              />
             </Elements>
           </div>
         </div>
