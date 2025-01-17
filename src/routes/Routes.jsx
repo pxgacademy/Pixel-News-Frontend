@@ -13,6 +13,7 @@ import Subscription from "../pages/subscription/Subscription";
 import MyArticles from "../pages/myArticles/MyArticles";
 import UpdateArticles from "../pages/updateArticles/UpdateArticles";
 import axios from "axios";
+import Dashboard from "../layout/dashboard/Dashboard";
 
 const API_LINK = import.meta.env.VITE_API_LINK
 
@@ -79,13 +80,17 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register />,
       },
     ],
   },
+  {
+    path: 'dashboard',
+    element: <Dashboard/>,
+  }
 ]);
