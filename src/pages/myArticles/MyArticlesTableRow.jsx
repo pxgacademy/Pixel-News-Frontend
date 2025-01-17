@@ -33,7 +33,7 @@ const MyArticlesTableRow = ({ article, serial, refetch }) => {
         <th>{serial}</th>
         <td className="min-w-96">{title}</td>
         <td className="text-center capitalize">
-          {status === "decline" ? (
+          {status === "declined" ? (
             <button
               onClick={() => handleModal(true)}
               className="mx-auto capitalize bg-rose-600 py-1 px-3 rounded-full text-white flex items-center gap-x-2"
@@ -80,7 +80,7 @@ const MyArticlesTableRow = ({ article, serial, refetch }) => {
           </button>
         </td>
       </tr>
-      {status === "decline" && isModalOpen && (
+      {status === "declined" && isModalOpen && (
         <dialog
           open
           id="my_modal"
