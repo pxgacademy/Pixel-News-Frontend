@@ -60,7 +60,7 @@ const usePatch = () => {
     });
   };
 
-  return handleUpdate;
+  return [handleUpdate];
 };
 
 export default usePatch;
