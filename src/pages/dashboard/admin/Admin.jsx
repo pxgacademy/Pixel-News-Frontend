@@ -1,8 +1,11 @@
 
 
+
 const Admin = () => {
     return (
-        <SectionContainer></SectionContainer>>
+        <section>
+            <h2>Admin</h2>
+        </section>
     );
 };
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Girassol&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Girassol&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Righteous&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,8 +7,6 @@
 html {
   scroll-behavior: smooth;
 }
-
-
 
 @layer utilities {
   input[type="number"]::-webkit-inner-spin-button,
@@ -21,13 +19,11 @@ html {
     @apply px-3 border-none rounded-md bg-darkThree/20 cursor-pointer active:scale-95 active:translate-y-1;
   }
 
-    /* Login page Captcha styles*/
-    #captcha > div {
-      @apply flex items-center gap-x-3;
-    }
-
+  /* Login page Captcha styles*/
+  #captcha > div {
+    @apply flex items-center gap-x-3;
   }
-    .css-13cymwt-control{
-   min-height: 500px;   
-    }
-
+}
+.css-13cymwt-control {
+  min-height: 500px;
+}

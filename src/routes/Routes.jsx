@@ -7,15 +7,19 @@ import AddArticles from "../pages/addArticles/AddArticles";
 import AllArticles from "../pages/allArticles/AllArticles";
 import PrivateRoutes from "./PrivateRoutes";
 import ArticleDetails from "../pages/articleDetails/ArticleDetails";
-import PremiumRoutes from "./PremiumRoutes";
 import PremiumArticles from "../pages/premiumArticles/PremiumArticles";
 import Subscription from "../pages/subscription/Subscription";
 import MyArticles from "../pages/myArticles/MyArticles";
 import UpdateArticles from "../pages/updateArticles/UpdateArticles";
 import axios from "axios";
 import Dashboard from "../layout/dashboard/Dashboard";
+import Admin from "../pages/dashboard/admin/Admin";
+import AdminRoutes from "./AdminRoutes";
+import AllUsers from "../pages/dashboard/allUsers/AllUsers";
+import AddPublisher from "../pages/dashboard/addPublisher/AddPublisher";
+import AllArticlesDashboard from "../pages/dashboard/allArticles/AllArticlesDashboard";
 
-const API_LINK = import.meta.env.VITE_API_LINK
+const API_LINK = import.meta.env.VITE_API_LINK;
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +73,7 @@ export const router = createBrowserRouter([
             <UpdateArticles />
           </PrivateRoutes>
         ),
-        loader: () => axios(`${API_LINK}/publishers`)
+        loader: () => axios(`${API_LINK}/publishers`),
       },
       {
         path: "add-articles",
@@ -90,7 +94,29 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: 'dashboard',
-    element: <Dashboard/>,
-  }
+    path: "dashboard",
+    element: (
+      <AdminRoutes>
+        <Dashboard />
+      </AdminRoutes>
+    ),
+    children: [
+      {
+        path: "admin",
+        element: <Admin />,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "all-articles",
+        element: <AllArticlesDashboard />,
+      },
+      {
+        path: "add-publisher",
+        element: <AddPublisher />,
+      },
+    ],
+  },
 ]);

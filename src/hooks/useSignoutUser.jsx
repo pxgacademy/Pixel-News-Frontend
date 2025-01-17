@@ -7,18 +7,18 @@ const useSignoutUser = () => {
   const handleSignOut = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You want to sign out?",
+      text: "You want to logout?",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, sign me out!",
+      confirmButtonText: "Yes, log me out!",
     }).then((result) => {
       if (result.isConfirmed) {
         signOutUser()
           .then(() =>
             Swal.fire({
-              title: "Successfully Signout",
+              title: "Successfully Logout",
               icon: "success",
               showConfirmButton: false,
               position: "center",

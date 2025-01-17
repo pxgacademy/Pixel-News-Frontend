@@ -1,47 +1,16 @@
 import { useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useContextValue from "../../hooks/useContextValue";
 import { FaUser } from "react-icons/fa";
 import useSignoutUser from "../../hooks/useSignoutUser";
+import NavbarLinks from "./NavbarLinks";
 
 const Navbar = () => {
-  const { user, userRole } = useContextValue();
+  const { user } = useContextValue();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [signOut] = useSignoutUser();
-
-  const navLinks = (
-    <>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/">
-        Home
-      </NavLink>
-      <NavLink onClick={() => setIsNavOpen(false)} to="/all-articles">
-        All Articles
-      </NavLink>
-      {user && (
-        <>
-          <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
-            Premium Articles
-          </NavLink>
-          <NavLink onClick={() => setIsNavOpen(false)} to="/subscriptions">
-            Subscription
-          </NavLink>
-          <NavLink onClick={() => setIsNavOpen(false)} to="/add-articles">
-            Add Articles
-          </NavLink>
-          <NavLink onClick={() => setIsNavOpen(false)} to="/my-articles">
-            My Articles
-          </NavLink>
-        </>
-      )}
-      {userRole.isAdmin && (
-        <NavLink onClick={() => setIsNavOpen(false)} to="/dashboard">
-          Dashboard
-        </NavLink>
-      )}
-    </>
-  );
 
   return (
     <nav className="flex items-center justify-between">
@@ -51,7 +20,7 @@ const Navbar = () => {
         </button>
       </div>
       <div className="navbar_links hidden md:flex gap-x-2 lg:gap-x-4 font-semibold">
-        {navLinks}
+        <NavbarLinks setIsNavOpen={setIsNavOpen} />
       </div>
 
       <div className="flex items-center">
@@ -103,7 +72,7 @@ const Navbar = () => {
           </p>
         </div>
         <div className="navbar_links flex flex-col gap-y-1 font-semibold mt-5">
-          {navLinks}
+          <NavbarLinks setIsNavOpen={setIsNavOpen} />
         </div>
       </div>
     </nav>

@@ -3,23 +3,21 @@ import { Navigate, useLocation } from "react-router-dom";
 import useContextValue from "../hooks/useContextValue";
 import Loading from "../components/loading/Loading";
 
-const PremiumRoutes = ({ children }) => {
+const AdminRoutes = ({ children }) => {
   const { pathname } = useLocation();
-  const { user, loading, userRole, signOutUser } = useContextValue();
+  const { user, loading, userRole } = useContextValue();
 
   if (loading) return <Loading />;
 
-  if (user && (userRole?.isAdmin || userRole.isPremium)) return children;
+  if (user && userRole?.isAdmin) return children;
   else {
-    signOutUser();
+    // TODO:    signOutUser();
     return <Navigate state={{ goTo: pathname }} to="/login" replace />;
   }
 };
 
-PremiumRoutes.propTypes = {
+AdminRoutes.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default PremiumRoutes;
-
-//
+export default AdminRoutes;
