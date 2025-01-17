@@ -1,3 +1,4 @@
+import DashboardContainer from "../../../components/container/DashboardContainer";
 
 
 
@@ -5,9 +6,7 @@
 
 const AllArticlesDashboard = () => {
     return (
-        <div>
-            
-        </div>
+       <DashboardContainer header='All Articles' ></DashboardContainer>
     );
 };
 

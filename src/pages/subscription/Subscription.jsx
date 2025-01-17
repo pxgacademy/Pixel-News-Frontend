@@ -28,7 +28,6 @@ const Subscription = () => {
 
   return (
     <>
-      {" "}
       <div className="relative max-w-screen-2xl mx-auto flex md:items-center justify-center md:justify-start">
         <div className="hidden md:block">
           <img className="w-full" src={banner} alt="" />

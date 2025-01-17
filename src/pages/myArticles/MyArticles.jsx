@@ -25,9 +25,7 @@ const MyArticles = () => {
 
   if (loading || isLoading) return <Loading />;
   return (
-    <SectionContainer>
-      <h4 className="text-4xl font-semibold text-center">My Articles</h4>
-
+    <SectionContainer header='My Articles' >
       {articles.length <= 0 ? (
         <NoDataFound/>
       ) : (

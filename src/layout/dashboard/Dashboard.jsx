@@ -14,7 +14,7 @@ const Dashboard = () => {
       <aside
         className={`absolute lg:relative z-10 transition-all duration-200 ${
           isMenu ? "left-0 lg:left-0 lg:top-0" : "-left-80 lg:left-0 lg:top-0"
-        } w-full max-w-72 p-5 bg-[#E2E5DE] border-x border-darkFive min-h-screen flex flex-col`}
+        } w-full max-w-72 p-5 bg-[#FDF1D3] border-x border-darkFive min-h-screen flex flex-col`}
       >
         <div className="mb-3 lg:hidden">
           <button
@@ -71,7 +71,7 @@ const Dashboard = () => {
           </button>
         </div>
       </aside>
-      <section className="flex-1 p-5 md:px-10 bg-[#f3f5f0]">
+      <section className="flex-1 min-h-screen bg-[#FDF1D3]">
         <button
           onClick={() => setIsMenu(true)}
           className="fixed lg:hidden top-3 left-3 p-2 rounded-md shadow-md bg-darkTwo text-lg text-white"

@@ -76,11 +76,7 @@ const AddArticles = () => {
   if (isLoading || loading) return <Loading />;
 
   return (
-    <SectionContainer>
-      <h4 className="text-center text-3xl md:text-4xl font-davidLibre">
-        Add An Article
-      </h4>
-
+    <SectionContainer header='Add An Article'>
       <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input

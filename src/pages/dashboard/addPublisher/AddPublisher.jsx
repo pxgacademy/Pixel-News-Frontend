@@ -1,14 +1,7 @@
-
-
-
-
+import DashboardContainer from "../../../components/container/DashboardContainer";
 
 const AddPublisher = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return <DashboardContainer header="Add Publisher"></DashboardContainer>;
 };
 
 export default AddPublisher;

@@ -1,12 +1,11 @@
+import DashboardContainer from "../../../components/container/DashboardContainer";
 
 
 
 
 const AllUsers = () => {
     return (
-        <div>
-            
-        </div>
+        <DashboardContainer header='All Users' ></DashboardContainer>
     );
 };
 

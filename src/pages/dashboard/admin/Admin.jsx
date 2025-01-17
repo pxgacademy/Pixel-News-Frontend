@@ -1,11 +1,13 @@
+import DashboardContainer from "../../../components/container/DashboardContainer";
 
 
 
 const Admin = () => {
     return (
-        <section>
-            <h2>Admin</h2>
-        </section>
+        <DashboardContainer header='Admin Dashboard' >
+
+            <h5>Admin</h5>
+        </DashboardContainer>
     );
 };
 

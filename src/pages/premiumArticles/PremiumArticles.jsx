@@ -9,9 +9,7 @@ const PremiumArticles = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <SectionContainer>
-      <h2 className="text-4xl font-bold text-center mb-6">Premium Articles</h2>
-
+    <SectionContainer header='Premium Articles'>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article} />

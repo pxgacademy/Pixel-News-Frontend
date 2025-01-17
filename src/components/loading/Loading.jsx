@@ -14,7 +14,9 @@ const Loading = ({
   const style = `${width} ${minWidth} ${maxWidth} ${height} ${minHeight} ${maxHeight} ${className}`;
 
   return (
-    <section className={`${style} flex items-center justify-center`}>
+    <section
+      className={`${style} max-w-screen-2xl mx-auto flex items-center justify-center bg-[#FDF1D3]`}
+    >
       <Lottie animationData={loaderGif} loop={true} />
     </section>
   );
