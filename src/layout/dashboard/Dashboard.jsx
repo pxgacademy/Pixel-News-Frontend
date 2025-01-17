@@ -10,11 +10,11 @@ const Dashboard = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [signOut] = useSignoutUser();
   return (
-    <section className="relative flex w-full max-w-screen-2xl mx-auto min-h-screen">
+    <section className="relative flex items-start w-full max-w-screen-2xl mx-auto min-h-screen">
       <aside
         className={`absolute lg:relative z-10 transition-all duration-200 ${
           isMenu ? "left-0 lg:left-0 lg:top-0" : "-left-80 lg:left-0 lg:top-0"
-        } w-full max-w-72 p-5 bg-[#FDF1D3] border-x border-darkFive min-h-screen flex flex-col`}
+        } w-full max-w-72 p-5 bg-[#FDF1D3] border border-darkFive min-h-screen flex flex-col`}
       >
         <div className="mb-3 lg:hidden">
           <button
@@ -70,8 +70,11 @@ const Dashboard = () => {
             <MdLogout className="rotate-180" /> Logout
           </button>
         </div>
+
+
+        
       </aside>
-      <section className="flex-1 min-h-screen bg-[#FDF1D3]">
+      <section className="flex-1 min-h-screen bg-[#FDF1D3] overflow-y-clip">
         <button
           onClick={() => setIsMenu(true)}
           className="fixed lg:hidden top-3 left-3 p-2 rounded-md shadow-md bg-darkTwo text-lg text-white"
