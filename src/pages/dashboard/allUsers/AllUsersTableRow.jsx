@@ -3,11 +3,11 @@ import usePatch from "../../../hooks/usePatch";
 
 const AllUsersTableRow = ({ singleUser, serial, refetch }) => {
   const [handleUpdate] = usePatch();
-  const { _id, name, email, image, isAdmin } = singleUser || {};
+  const { name, email, image, isAdmin } = singleUser || {};
 
   const handleMakeAdmin = () => {
     handleUpdate({
-      link: `/users/make-admin/${_id}`,
+      link: `/users/role/update/${email}`,
       data: { isAdmin: true },
       refetch: refetch,
       questionTitle: "Are you sure?",
