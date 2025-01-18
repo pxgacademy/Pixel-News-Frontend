@@ -1,4 +1,5 @@
 import AllPublishers from "../allPublishers/AllPublishers";
+import PlansSection from "../plans/PlansSection";
 import Slider from "../slider/Slider";
 import Statistics from "../statistics/Statistics";
 
@@ -13,6 +14,7 @@ const Home = () => {
         <div className="lg:col-span-2">
           <AllPublishers />
           <Statistics />
+          <PlansSection/>
         </div>
         <div>ajslkdjf</div>
       </section>
