@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import newsImg1 from "../../../assets/logo/mews-plan-1.png";
 import newsImg2 from "../../../assets/logo/mews-plan-2.png";
 import newsImg3 from "../../../assets/logo/mews-plan-3.png";
@@ -39,7 +40,6 @@ const PlansSection = () => {
       <p className="text-3xl font-semibold">unlock endless opportunities</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 mt-14">
-
         <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
           <img src={newsImg1} alt="" />
           <p className="text-2xl font-semibold mb-4">Basic</p>
@@ -53,13 +53,14 @@ const PlansSection = () => {
             <span>+ Advantages</span>
             <span>+ Bonuses</span>
           </div>
-          <button className="btn w-full mt-5">Buy Now</button>
+          <Link to="/subscriptions">
+            <button className="btn w-full mt-5">Buy Now</button>
+          </Link>
         </div>
-
 
         <div className="max-w-96 mx-auto relative z-[2] md:scale-[105%] md:-translate-y-2 bg-black/10 backdrop-blur p-5 text-white border border-white">
           <img src={newsImg2} alt="" />
-          <p className="text-2xl font-semibold mb-4">Premium</p>
+          <p className="text-2xl font-semibold mb-4 text-white">Premium</p>
           <p>
             $<span className="text-7xl font-semibold font-righteous">15</span>
             /5days
@@ -70,9 +71,12 @@ const PlansSection = () => {
             <span>+ Advantages</span>
             <span>+ Bonuses</span>
           </div>
-          <button className="btn btn-info text-white w-full mt-5">Buy Now</button>
+          <Link to="/subscriptions">
+            <button className="btn btn-info text-white w-full mt-5">
+              Buy Now
+            </button>
+          </Link>
         </div>
-
 
         <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
           <img src={newsImg3} alt="" />
@@ -87,12 +91,10 @@ const PlansSection = () => {
             <span>+ Advantages</span>
             <span>+ Bonuses</span>
           </div>
-          <button className="btn w-full mt-5">Buy Now</button>
+          <Link to="/subscriptions">
+            <button className="btn w-full mt-5">Buy Now</button>
+          </Link>
         </div>
-
-
-
-
       </div>
     </div>
   );
