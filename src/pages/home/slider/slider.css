@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.slider .slide ul{
+.slider .slide ul {
   height: 800px;
   width: 100%;
 }
@@ -16,5 +16,9 @@
   object-fit: cover;
 }
 
-
-
+/* Media query to hide thumbs on mobile devices */
+@media (max-width: 768px) {
+  .carousel .thumbs {
+    display: none;
+  }
+}

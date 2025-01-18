@@ -43,21 +43,21 @@ const Slider = () => {
                 alt={article.title}
               />
             </div>
-            <div className="absolute max-w-96 md:max-w-lg ml-5 md:ml-10 lg:ml-20 bg-white p-5 rounded-lg shadow-lg text-left">
-              <p className="text-lg font-semibold mb-2">
+            <div className="absolute max-w-96 md:max-w-lg m-5 md:m-0 md:ml-10 lg:ml-20 bg-white p-5 rounded-lg shadow-lg text-left">
+              <p className="text-sm md:text-lg font-semibold mb-2">
                 <span>{new Date(article.date).toLocaleDateString()} by</span>{" "}
                 <span className="text-info">{article?.publisher?.name}</span>
               </p>
-              <h3 className="text-2xl md:text-3xl font-davidLibre font-semibold">
+              <h3 className="text-lg md:text-3xl font-davidLibre font-semibold">
                 {article.title}
               </h3>
               <div className="border-b border-info my-4 max-w-40" />
-              <p className="mb-5">
+              <p className="mb-5 text-sm md:text-base">
                 <TextSnippet text={article.description} length={200} />
               </p>
 
               <Link to={`/articles/details/${article._id}`}>
-                <button className="btn btn-info px-8 text-white">
+                <button className="btn btn-sm md:btn-md btn-info px-5 md:px-8 text-white">
                   Read More
                 </button>
               </Link>
