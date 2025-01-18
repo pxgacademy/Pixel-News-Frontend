@@ -10,7 +10,7 @@ const SectionContainer = ({ children, header }) => {
           </h2>
         </div>
       )}
-      <section className="w-full max-w-[1320px] px-5 py-10 mx-auto bg-[#e1e4dc] font-inter">
+      <section className="w-full max-w-[1320px] px-5 py-10 mx-auto  font-inter">
         {children}
       </section>
     </section>

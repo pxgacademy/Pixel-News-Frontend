@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 
 const ViewCountBadge = ({ count }) => {
   return (
-    <span className="absolute shadow-md right-5 top-5 flex items-center gap-x-2 rounded-lg bg-white py-1 px-3">
+    <span className="absolute z-10 shadow-md right-5 top-5 flex items-center gap-x-2 rounded-lg bg-white py-1 px-3 cursor-default">
       <span>
         <FaEye />
       </span>

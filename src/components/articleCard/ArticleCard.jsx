@@ -19,13 +19,15 @@ const ArticleCard = ({ article }) => {
 
   return (
     <div
-      className={`bg-white p-3 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default ${
+      className={`bg-white p-3 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default group  ${
         isPaid && "border border-yellow-600"
       }`}
     >
       <ViewCountBadge count={viewCount} />
       {isPaid && <PremiumBadge />}
-      <img className="w-full h-72 object-cover rounded-lg" src={image} alt="" />
+      <div className="w-full h-72 overflow-hidden">
+      <img className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover rounded-lg" src={image} alt="" />
+      </div>
       <h2 className="mt-3 text-2xl font-semibold font-davidLibre">{title}</h2>
       <p className="mt-2">
         <TextSnippet text={description} />
