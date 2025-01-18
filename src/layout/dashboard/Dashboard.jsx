@@ -14,7 +14,7 @@ const Dashboard = () => {
       <aside
         className={`absolute lg:relative z-10 transition-all duration-200 ${
           isMenu ? "left-0 lg:left-0 lg:top-0" : "-left-80 lg:left-0 lg:top-0"
-        } w-full max-w-72 p-5 bg-[#FDF1D3] border border-darkFive min-h-screen flex flex-col`}
+        } w-full max-w-72 p-5 bg-[#FDF1D3] border border-[#5f9ea0]/20 min-h-screen flex flex-col`}
       >
         <div className="mb-3 lg:hidden">
           <button

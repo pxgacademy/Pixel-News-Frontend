@@ -9,9 +9,9 @@ import Swal from "sweetalert2";
 import { usePublicDataLoader } from "../../hooks/useDataLoader";
 import Loading from "../../components/loading/Loading";
 import PublisherSelect from "../../components/formInputs/PublisherSelect";
+const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddArticles = () => {
-  const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
   const { user, loading } = useContextValue();
   const [publishers, isLoading] = usePublicDataLoader("/publishers");
   const publicAPI = usePublicAPI();
