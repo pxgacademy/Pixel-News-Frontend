@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./header.css";
 import Navbar from "./Navbar";
 
@@ -16,14 +17,16 @@ const Header = () => {
               </p>
             </div>
             <div>
-              <button className="hidden md:flex flex-col items-center border border-darkFour rounded-xl px-5 py-2">
+              <Link to='/subscriptions'>
+              <button className="hidden md:flex flex-col items-center border border-darkFour rounded-xl px-5 py-2 hover:bg-[#ff1493] transition-colors duration-200">
                 <span className="text-xl md:text-2xl font-semibold uppercase">
                   Subscribe Now
                 </span>
                 <span className="font-davidLibre text-base md:text-lg">
-                  Only $5 for a month
+                  Only $15 for 5 days
                 </span>
               </button>
+              </Link>
             </div>
           </div>
         </div>

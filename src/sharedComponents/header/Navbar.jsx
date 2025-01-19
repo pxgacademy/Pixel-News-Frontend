@@ -43,11 +43,18 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <Link to="/login">
+          <div>
+            <Link to="/login">
             <button className="btn bg-[#ff1493] hover:bg-[#f70084] text-white">
               Login
             </button>
           </Link>
+          <Link to="/register">
+            <button className="btn bg-darkBlue hover:bg-darkBlue/80 text-white ml-2">
+              Register
+            </button>
+          </Link>
+          </div>
         )}
       </div>
 

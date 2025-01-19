@@ -18,6 +18,7 @@ import AdminRoutes from "./AdminRoutes";
 import AllUsers from "../pages/dashboard/allUsers/AllUsers";
 import AddPublisher from "../pages/dashboard/addPublisher/AddPublisher";
 import AllArticlesDashboard from "../pages/dashboard/allArticles/AllArticlesDashboard";
+import MyProfile from "../pages/myProfile/MyProfile";
 
 const API_LINK = import.meta.env.VITE_API_LINK;
 
@@ -80,6 +81,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <AddArticles />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "my-profile",
+        element: (
+          <PrivateRoutes>
+            <MyProfile />
           </PrivateRoutes>
         ),
       },

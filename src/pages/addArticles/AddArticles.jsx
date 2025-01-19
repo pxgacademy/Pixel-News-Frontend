@@ -9,13 +9,27 @@ import Swal from "sweetalert2";
 import { usePublicDataLoader } from "../../hooks/useDataLoader";
 import Loading from "../../components/loading/Loading";
 import PublisherSelect from "../../components/formInputs/PublisherSelect";
+import useMyArticles from "../../hooks/useMyArticles";
+import { useEffect, useState } from "react";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddArticles = () => {
-  const { user, loading } = useContextValue();
-  const [publishers, isLoading] = usePublicDataLoader("/publishers");
+  const [isPermitted, setIsPermitted] = useState(true);
+  const { user, loading, userRole } = useContextValue();
   const publicAPI = usePublicAPI();
   const secureAPI = useSecureAPI();
+  const [publishers, isLoading] = usePublicDataLoader("/publishers");
+  const [articles, articlesLoading] = useMyArticles();
+
+  console.log(userRole);
+
+  useEffect(() => {
+    if (articles.length >= 1 && !userRole.isPremium) {
+      if (userRole.isAdmin) setIsPermitted(true);
+      else setIsPermitted(false);
+    }
+    // eslint-disable-next-line
+  }, [userRole.isPremium, userRole.inAdmin, articles]);
 
   const {
     control,
@@ -73,10 +87,10 @@ const AddArticles = () => {
     }
   };
 
-  if (isLoading || loading) return <Loading />;
+  if (isLoading || loading || articlesLoading) return <Loading />;
 
   return (
-    <SectionContainer header='Add An Article'>
+    <SectionContainer header="Add An Article">
       <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -129,8 +143,10 @@ const AddArticles = () => {
           )}
 
           <label className="block text-center mt-4">
-            <button className="btn btn-wide btn-accent text-white">
-              Add Article
+            <button
+            disabled={!isPermitted}
+            className="btn px-10 btn-accent text-white disabled:bg-error disabled:text-white">
+              {isPermitted? 'Add Article':'Get Premium to Add More Articles'}
             </button>
           </label>
         </form>
