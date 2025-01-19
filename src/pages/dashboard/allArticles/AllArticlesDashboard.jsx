@@ -31,14 +31,12 @@ const AllArticlesDashboard = () => {
       const { data } = await secureAPI.get(`/articles?skip=${skip}&limit=10`);
       return data;
     },
-    enabled:!!analytics?.articles,
+    enabled: !!analytics?.articles,
   });
 
   useEffect(() => {
-    refetch()
-  }, [selectedPage, analytics?.articles])
-  
-
+    refetch();
+  }, [selectedPage, analytics?.articles]);
 
   if (loading || isLoading || analyticsLoading) return <Loading />;
   return (
@@ -74,7 +72,6 @@ const AllArticlesDashboard = () => {
               </tbody>
             </table>
           </div>
-
           {/* pagination */}
           <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-3">
             <div className="flex items-center flex-wrap gap-1">

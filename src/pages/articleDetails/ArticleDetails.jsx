@@ -25,7 +25,7 @@ const ArticleDetails = () => {
     if (isPaid && !userRole?.isPremium)
       if (!userRole.isAdmin) return <Navigate to="/" replace />;
   }
-  if (isLoading) return <Loading />;
+  if (isLoading || loading) return <Loading />;
   return (
     <SectionContainer header="Article Details">
       <div
@@ -75,7 +75,7 @@ const ArticleDetails = () => {
             />
             <div>
               <p className="font-semibold">{userInfo?.name}</p>
-              <p className="font-semibold">{userInfo?.email}</p>
+              <p className="font-semibold">{creator}</p>
             </div>
           </div>
         </div>

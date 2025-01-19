@@ -11,6 +11,7 @@ import Loading from "../../components/loading/Loading";
 import PublisherSelect from "../../components/formInputs/PublisherSelect";
 import useMyArticles from "../../hooks/useMyArticles";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddArticles = () => {
@@ -18,6 +19,7 @@ const AddArticles = () => {
   const { user, loading, userRole } = useContextValue();
   const publicAPI = usePublicAPI();
   const secureAPI = useSecureAPI();
+  const navigate = useNavigate()
   const [publishers, isLoading] = usePublicDataLoader("/publishers");
   const [articles, articlesLoading] = useMyArticles();
 
@@ -62,6 +64,7 @@ const AddArticles = () => {
           // clear the image input field after successful upload
           reset();
           setValue("tags", []);
+          navigate('/my-articles')
           Swal.fire({
             title: "Success!",
             text: "Article added successfully",

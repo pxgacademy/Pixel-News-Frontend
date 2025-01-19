@@ -5,7 +5,7 @@ import { Chart } from "react-google-charts";
 
 const LineChart = () => {
   const width = useViewportWidth() || 0
-  const [data, isLoading] = useSecureDataLoader("/admin/analytics");
+  const [data ={}, isLoading] = useSecureDataLoader("/admin/analytics");
 
   const chartData = [
     ["Label", "Value"],

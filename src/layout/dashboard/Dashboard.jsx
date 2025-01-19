@@ -10,11 +10,11 @@ const Dashboard = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [signOut] = useSignoutUser();
   return (
-    <section className="relative flex items-start w-full max-w-screen-2xl mx-auto min-h-screen">
+    <section className="relative flex  w-full max-w-screen-2xl mx-auto min-h-screen">
       <aside
         className={`absolute lg:relative z-10 transition-all duration-200 ${
           isMenu ? "left-0 lg:left-0 lg:top-0" : "-left-80 lg:left-0 lg:top-0"
-        } w-full max-w-72 p-5 bg-[#FDF1D3] border border-[#5f9ea0]/20 min-h-screen flex flex-col`}
+        } w-full max-w-72 p-5 bg-[#FDF1D3] border border-[#5f9ea0]/20 min-h-screen`}
       >
         <div className="mb-3 lg:hidden">
           <button
@@ -44,7 +44,7 @@ const Dashboard = () => {
         <div className="divider" />
 
         {/* Main Layout Links */}
-        <div className="dashboardNavLinks grow flex flex-col gap-2">
+        <div className="dashboardNavLinks flex flex-col gap-2">
           <NavLink onClick={() => setIsMenu(false)} to="/">
             <button>Home</button>
           </NavLink>

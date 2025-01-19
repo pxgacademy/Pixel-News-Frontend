@@ -5,7 +5,7 @@ import useViewportWidth from "../../../hooks/useViewportWidth";
 
 const ColumnChart = () => {
     const width = useViewportWidth() || 0
-  const [data, isLoading] = useSecureDataLoader("/admin/analytics");
+    const [data = {}, isLoading] = useSecureDataLoader("/admin/analytics");
 
   const count =
     data?.articlesPerPublisher?.map((value) => [value._id, value.totalViews]) ||

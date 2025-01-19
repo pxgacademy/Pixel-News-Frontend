@@ -5,7 +5,7 @@ import { Chart } from "react-google-charts";
 
 const PieChart = () => {
   const width = useViewportWidth();
-  const [data, isLoading] = useSecureDataLoader("/admin/analytics");
+  const [data ={}, isLoading] = useSecureDataLoader("/admin/analytics");
 
   const count =
     data?.articlesPerPublisher?.map((value) => [
