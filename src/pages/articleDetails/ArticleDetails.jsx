@@ -18,15 +18,16 @@ const ArticleDetails = () => {
     publisher,
     isPaid,
     creator,
-  } = article;
+    userInfo,
+  } = article || {};
 
-  if (!loading && !isLoading  && user?.email !== creator) {
+  if (!loading && !isLoading && user?.email !== creator) {
     if (isPaid && !userRole?.isPremium)
       if (!userRole.isAdmin) return <Navigate to="/" replace />;
   }
   if (isLoading) return <Loading />;
   return (
-    <SectionContainer>
+    <SectionContainer header="Article Details">
       <div
         className={`relative max-w-3xl mx-auto bg-white p-5 md:p-10 rounded-3xl shadow-xl ${
           isPaid && "border border-yellow-600"
@@ -38,9 +39,21 @@ const ArticleDetails = () => {
           src={image}
           alt={title}
         />
-        <h1 className="text-3xl md:text-4xl font-bold font-davidLibre mt-4">
+        <div className=" mt-4 flex items-center gap-x-3 flex-wrap">
+          <p className="my-1">
+            Published Date:{" "}
+            <span className="font-semibold">
+              {new Date(date).toLocaleDateString()}
+            </span>
+          </p>
+          <p>
+            Total View: <span className="font-semibold">{viewCount}</span>
+          </p>
+        </div>
+        <h1 className="text-3xl md:text-4xl font-bold font-davidLibre mt-3">
           {title}
         </h1>
+
         <div className="md:flex">
           <div className="md:flex-1 mt-3 flex items-center gap-x-2">
             <img
@@ -54,16 +67,16 @@ const ArticleDetails = () => {
             </div>
           </div>
 
-          <div className="md:flex-1">
-            <p className="my-1">
-              Published Date:{" "}
-              <span className="font-semibold">
-                {new Date(date).toLocaleDateString()}
-              </span>
-            </p>
-            <p>
-              Total View: <span className="font-semibold">{viewCount}</span>
-            </p>
+          <div className="md:flex-1 mt-3 flex items-center gap-x-2">
+            <img
+              className="w-12 max-h-12 object-cover"
+              src={userInfo?.image}
+              alt=""
+            />
+            <div>
+              <p className="font-semibold">{userInfo?.name}</p>
+              <p className="font-semibold">{userInfo?.email}</p>
+            </div>
           </div>
         </div>
         <p className="my-2 text-justify">{description}</p>

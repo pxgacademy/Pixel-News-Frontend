@@ -1,7 +1,7 @@
 import SectionContainer from "../../components/container/SectionContainer";
 import banner from "../../assets/images/profile-bg.png";
 import useContextValue from "../../hooks/useContextValue";
-import { useSecureAPI } from "../../hooks/useAPI_Links";
+import { usePublicAPI, useSecureAPI } from "../../hooks/useAPI_Links";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/loading/Loading";
 import { RiArticleFill, RiImageEditFill } from "react-icons/ri";
@@ -11,10 +11,12 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { IoClose, IoDiamondSharp } from "react-icons/io5";
 import { TbDiamondOff } from "react-icons/tb";
 import { FaUser, FaUserEdit } from "react-icons/fa";
+const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const MyProfile = () => {
   const { user, loading } = useContextValue();
   const secureAPI = useSecureAPI();
+  const publicAPI = usePublicAPI();
   const {
     data = {},
     isLoading,
@@ -35,10 +37,26 @@ const MyProfile = () => {
     else modal.close();
   };
 
-  console.log(data);
-
-  const { email, name, image, isAdmin, isPremium, coverImage } =
+  const { _id, email, name, image, isAdmin, isPremium, coverImage } =
     data?.user || {};
+
+  const handleChangeCover = async (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const { data } = await publicAPI.post(imgApi, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    if (data?.data?.display_url) {
+      const { data: res } = await secureAPI.patch(`/users/update/${_id}`, {
+        coverImage: data.data.display_url,
+      });
+      refetch();
+      console.log(res);
+    }
+  };
 
   if (loading || isLoading) return <Loading />;
 
@@ -53,23 +71,33 @@ const MyProfile = () => {
           />
 
           {/* icons */}
-          <div className="absolute right-5 bottom-5 flex gap-3">
-            <button className="relative overflow-hidden bg-white p-3 rounded hover:w-32 text-left transition-all duration-300 delay-100 flex items-center group">
-              <span>
+          <div className="absolute right-1 md:right-5 bottom-1 md:bottom-5 flex gap-3">
+            <label
+              htmlFor="editCover"
+              className="relative bg-white rounded text-center transition-all duration-300 flex items-center justify-center group w-10 h-10 hover:w-28 cursor-pointer"
+            >
+              <input
+                onChange={(e) => handleChangeCover(e)}
+                type="file"
+                id="editCover"
+                className="hidden"
+              />
+              <span className="absolute transition-all duration-300 group-hover:scale-0">
                 <RiImageEditFill />
               </span>
-              <span className="absolute -right-3 transition-all duration-300 group-hover:translate-x-0 group-hover:right-3 text-right translate-x-[100%]">
+              <span className="absolute transition-all duration-300 scale-0 group-hover:scale-100 group-hover: text-right">
                 Edit Cover
               </span>
-            </button>
+            </label>
+
             <button
               onClick={() => handleModal(true)}
-              className="relative overflow-hidden bg-white p-3 rounded hover:w-32 text-left transition-all duration-300 delay-100 flex items-center group"
+              className="relative bg-white rounded text-center transition-all duration-300 flex items-center justify-center group w-10 h-10 hover:w-28"
             >
-              <span>
+              <span className="absolute transition-all duration-300 group-hover:scale-0">
                 <FaUserEdit />
               </span>
-              <span className="absolute -right-3 transition-all duration-300 group-hover:translate-x-0 group-hover:right-3 text-right translate-x-[100%]">
+              <span className="absolute transition-all duration-300 scale-0 group-hover:scale-100 group-hover: text-right">
                 Edit Profile
               </span>
             </button>
