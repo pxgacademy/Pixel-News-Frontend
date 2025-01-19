@@ -3,12 +3,12 @@ import ViewCountBadge from "../../../components/badges/ViewCountBadge";
 import Loading from "../../../components/loading/Loading";
 import TextSnippet from "../../../components/textSnippet/TextSnippet";
 import { usePublicDataLoader } from "../../../hooks/useDataLoader";
+import PremiumButton from "../../../components/premiumButton/PremiumButton";
 
 const TrendingArticles = () => {
   const [data = [], isLoading] = usePublicDataLoader("/slider-articles");
 
   const [common, ...articles] = data;
-
 
   if (isLoading) return <Loading />;
   return (
@@ -35,9 +35,14 @@ const TrendingArticles = () => {
           <h4 className="text-4xl font-girassol mt-3">{common?.title}</h4>
           <p className="mt-2">
             <TextSnippet text={common?.description} length={250} />
-            <Link to={`/articles/details/${common?._id}`}>
-              <span className="text-blue-600 underline"> Read more...</span>
-            </Link>
+            <PremiumButton
+              link={`/articles/details/${common._id}`}
+              isPaid={common.isPaid}
+              btnText="Read More"
+              width=""
+              btnStyle="text-blue-600 underline"
+              disabledStyle="text-error"
+            />
           </p>
         </div>
 
@@ -60,11 +65,14 @@ const TrendingArticles = () => {
                   <h5 className="text-lg font-semibold">{article?.title}</h5>
                   <p className="text-sm">
                     <TextSnippet text={article?.description} length={80} />
-                    <Link to={`/articles/details/${common?._id}`}>
-                      <span className="text-blue-600 underline">
-                        Read more...
-                      </span>
-                    </Link>
+                    <PremiumButton
+                      link={`/articles/details/${article._id}`}
+                      isPaid={article.isPaid}
+                      btnText="Read More"
+                      width=""
+                      btnStyle="text-blue-600 underline"
+                      disabledStyle="text-error"
+                    />
                   </p>
                 </div>
               </div>

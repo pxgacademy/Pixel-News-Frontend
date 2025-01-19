@@ -10,7 +10,7 @@ const Statistics = () => {
 
   if (isLoading) return <Loading minHeight="" />;
   return (
-    <div className="bg-[url(../../assets/images/Statistics-banner.png)] bg-no-repeat bg-left bg-cover py-10 mt-16">
+    <div className="bg-[url(../../assets/images/Statistics-banner.png)] bg-no-repeat bg-left bg-cover py-10">
       <h3 className="text-3xl font-semibold text-center mb-8">Statistics</h3>
       <ScrollTrigger
         onEnter={() => setCounterOn(true)}

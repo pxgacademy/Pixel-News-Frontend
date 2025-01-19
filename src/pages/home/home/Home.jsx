@@ -17,12 +17,15 @@ const Home = () => {
         <div className="lg:col-span-2">
           <TrendingArticles />
           <AllPublishers />
-          <Statistics />
           <PlansSection/>
         </div>
 
         {/* Right side section */}
         <div>ajslkdjf</div>
+      </section>
+      <section className="w-full max-w-screen-2xl mx-auto py-16 bg-[#FDF1D3]">
+          <Statistics />
+
       </section>
     </>
   );

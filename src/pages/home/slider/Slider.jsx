@@ -6,9 +6,10 @@ import { usePublicDataLoader } from "../../../hooks/useDataLoader";
 import Loading from "../../../components/loading/Loading";
 import { Link } from "react-router-dom";
 import ViewCountBadge from "../../../components/badges/ViewCountBadge";
+import PremiumButton from "../../../components/premiumButton/PremiumButton";
 
 const Slider = () => {
-  const [articles =[], isLoading] = usePublicDataLoader("/slider-articles");
+  const [articles = [], isLoading] = usePublicDataLoader("/slider-articles");
 
   if (isLoading) return <Loading />;
   return (
@@ -55,12 +56,12 @@ const Slider = () => {
               <p className="mb-5 text-sm md:text-base">
                 <TextSnippet text={article.description} length={200} />
               </p>
-
-              <Link to={`/articles/details/${article._id}`}>
-                <button className="btn btn-sm md:btn-md btn-info px-5 md:px-8 text-white">
-                  Read More
-                </button>
-              </Link>
+              <PremiumButton
+                link={`/articles/details/${article._id}`}
+                isPaid={article.isPaid}
+                btnText="Read More"
+                width="px-10"
+              />
             </div>
           </div>
         ))}

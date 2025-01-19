@@ -5,6 +5,7 @@ import useContextValue from "../../hooks/useContextValue";
 import PremiumBadge from "../badges/PremiumBadge";
 import ViewCountBadge from "../badges/ViewCountBadge";
 import { usePublicAPI } from "../../hooks/useAPI_Links";
+import PremiumButton from "../premiumButton/PremiumButton";
 
 const ArticleCard = ({ article }) => {
   const { userRole } = useContextValue();
@@ -26,7 +27,11 @@ const ArticleCard = ({ article }) => {
       <ViewCountBadge count={viewCount} />
       {isPaid && <PremiumBadge />}
       <div className="w-full h-72 overflow-hidden">
-      <img className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover rounded-lg" src={image} alt="" />
+        <img
+          className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover rounded-lg"
+          src={image}
+          alt=""
+        />
       </div>
       <h2 className="mt-3 text-2xl font-semibold font-davidLibre">{title}</h2>
       <p className="mt-2">
@@ -45,34 +50,11 @@ const ArticleCard = ({ article }) => {
         </div>
       </div>
 
-      {isPaid && !userRole.isPremium ? (
-        userRole.isAdmin ? (
-          <Link to={`/articles/details/${_id}`}>
-            <button
-              onClick={handleViewCount}
-              className="mt-4 btn btn-info text-white w-full"
-            >
-              Details
-            </button>
-          </Link>
-        ) : (
-          <button
-            disabled
-            className="mt-4 btn w-full disabled:text-darkTwo disabled:cursor-not-allowed"
-          >
-            Get premium to see
-          </button>
-        )
-      ) : (
-        <Link to={`/articles/details/${_id}`}>
-          <button
-            onClick={handleViewCount}
-            className="mt-4 btn btn-info text-white w-full"
-          >
-            Details
-          </button>
-        </Link>
-      )}
+      <PremiumButton
+        onClick={handleViewCount}
+        link={`/articles/details/${_id}`}
+        isPaid={isPaid}
+      />
     </div>
   );
 };

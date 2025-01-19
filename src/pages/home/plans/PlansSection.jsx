@@ -5,7 +5,7 @@ import newsImg3 from "../../../assets/logo/mews-plan-3.png";
 
 const PlansSection = () => {
   return (
-    <div className="my-16 bg-[url(../../assets/images/subscription-banner-homepage.jpg)] bg-no-repeat bg-center bg-cover text-center p-5 lg:p-10 text-white cursor-default">
+    <div className="mt-16 bg-[url(../../assets/images/subscription-banner-homepage.jpg)] bg-no-repeat bg-center bg-cover text-center p-5 lg:p-10 text-white cursor-default">
       <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-davidLibre">
         Choose Your Plan
       </h1>
