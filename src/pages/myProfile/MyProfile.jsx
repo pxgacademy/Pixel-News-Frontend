@@ -11,10 +11,11 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { IoClose, IoDiamondSharp } from "react-icons/io5";
 import { TbDiamondOff } from "react-icons/tb";
 import { FaUser, FaUserEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const MyProfile = () => {
-  const { user, loading } = useContextValue();
+  const { user, loading, updateUser } = useContextValue();
   const secureAPI = useSecureAPI();
   const publicAPI = usePublicAPI();
   const {
@@ -41,20 +42,67 @@ const MyProfile = () => {
     data?.user || {};
 
   const handleChangeCover = async (e) => {
-    const image = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image);
+    try {
+      const image = e.target.files[0];
+      const formData = new FormData();
+      formData.append("image", image);
 
-    const { data } = await publicAPI.post(imgApi, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
-    if (data?.data?.display_url) {
-      const { data: res } = await secureAPI.patch(`/users/update/${_id}`, {
-        coverImage: data.data.display_url,
+      const { data } = await publicAPI.post(imgApi, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
+
+      if (data?.data?.display_url) {
+        await secureAPI.patch(`/users/update/${_id}`, {
+          coverImage: data.data.display_url,
+        });
+        refetch();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
+
+  const handleChangeProfile = async (e) => {
+    e.preventDefault();
+    handleModal(false)
+    try {
+      const update = {
+        name: e.target.name.value,
+        image: image,
+      };
+
+      if (e.target.image.files[0]) {
+        const image = e.target.image.files[0];
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const { data } = await publicAPI.post(imgApi, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        if (data?.data?.display_url) update.image = data.data?.display_url;
+      }
+
+      await updateUser({ displayName: update?.name, photoURL: update?.image });
+      await secureAPI.patch(`/users/update/${_id}`, update);
       refetch();
-      console.log(res);
+      Swal.fire({
+        title: "Success!",
+        text: "Profile updated successfully",
+        icon: "success",
+        showConfirmButton: false,
+        position: "center",
+        timer: 2000,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: error.message,
+        icon: "error",
+      });
     }
   };
 
@@ -62,7 +110,7 @@ const MyProfile = () => {
 
   return (
     <SectionContainer>
-      <section className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl">
+      <section className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl cursor-default">
         <div className="w-full max-h-64 relative flex overflow-hidden">
           <img
             className="w-full h-full object-cover"
@@ -181,7 +229,51 @@ const MyProfile = () => {
               <IoClose />
             </button>
           </div>
-          <h4 className="text-center font-girassol text-3xl mb-2">Payment</h4>
+          <h4 className="text-center font-girassol text-3xl mb-2">
+            Update Profile
+          </h4>
+          <form onSubmit={handleChangeProfile}>
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="block mt-1 w-full px-3 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="type your name"
+                defaultValue={name}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                className="block mt-1 w-full px-3 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                value={email}
+                readOnly
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700">
+                Choose an Image
+              </label>
+              <input
+                type="file"
+                name="image"
+                className="block w-full px-3 py-2 text-sm text-gray-700"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full px-4 py-3 text-sm font-medium text-white bg-blue-500 rounded-md focus:outline-none hover:bg-blue-600"
+            >
+              Update Profile
+            </button>
+          </form>
         </div>
       </dialog>
     </SectionContainer>
