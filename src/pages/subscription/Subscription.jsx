@@ -6,10 +6,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { Helmet } from "react-helmet";
+import useContextValue from "../../hooks/useContextValue";
+import Loading from "../../components/loading/Loading";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
 const Subscription = () => {
+  const {loading} = useContextValue()
   const [priceAndTime, setPriceAndTime] = useState({ price: 0, time: 0 });
 
   // handle modal
@@ -25,9 +29,12 @@ const Subscription = () => {
     if (value === 7200) setPriceAndTime({ price: 15, time: 7200 });
     if (value === 14400) setPriceAndTime({ price: 25, time: 14400 });
   };
-
+if(loading) return <Loading/>
   return (
     <>
+      <Helmet>
+        <title>Subscriptions | Pixel News</title>
+      </Helmet>
       <div className="relative max-w-screen-2xl mx-auto flex md:items-center justify-center md:justify-start">
         <div className="hidden md:block">
           <img className="w-full" src={banner} alt="" />

@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { usePublicAPI } from "../../hooks/useAPI_Links";
 import { useLoaderData } from "react-router-dom";
 import NoDataFound from "../../components/loading/NoDataFound";
+import { Helmet } from "react-helmet";
 
 const AllArticles = () => {
   const { loading } = useContextValue();
@@ -52,6 +53,9 @@ const AllArticles = () => {
 
   return (
     <SectionContainer header="All Articles">
+      <Helmet>
+        <title> All Articles | Pixel News</title>
+      </Helmet>
       <div className="w-full mx-auto bg-gray-50 dark:bg-gray-800 shadow-lg dark:shadow-xl py-4 px-3 rounded-xl border dark:border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-2">
           <label className="block w-full h-12">

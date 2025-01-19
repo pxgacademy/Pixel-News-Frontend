@@ -7,6 +7,7 @@ import NoDataFound from "../../../components/loading/NoDataFound";
 import { useSecureDataLoader } from "../../../hooks/useDataLoader";
 import AllUsersTableRow from "./AllUsersTableRow";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AllUsers = () => {
   const secureAPI = useSecureAPI();
@@ -39,6 +40,9 @@ const AllUsers = () => {
   if (loading || isLoading || analyticsLoading) return <Loading />;
   return (
     <DashboardContainer header="All Users">
+      <Helmet>
+        <title>All Users | Pixel News</title>
+      </Helmet>
       {users.length <= 0 ? (
         <NoDataFound />
       ) : (

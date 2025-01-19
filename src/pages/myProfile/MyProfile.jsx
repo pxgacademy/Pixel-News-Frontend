@@ -12,6 +12,7 @@ import { IoClose, IoDiamondSharp } from "react-icons/io5";
 import { TbDiamondOff } from "react-icons/tb";
 import { FaUser, FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const MyProfile = () => {
@@ -110,6 +111,9 @@ const MyProfile = () => {
 
   return (
     <SectionContainer>
+      <Helmet>
+        <title>Profile | Pixel News</title>
+      </Helmet>
       <section className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl cursor-default">
         <div className="w-full max-h-64 relative flex overflow-hidden">
           <img

@@ -12,6 +12,7 @@ import PublisherSelect from "../../components/formInputs/PublisherSelect";
 import useMyArticles from "../../hooks/useMyArticles";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddArticles = () => {
@@ -93,6 +94,9 @@ const AddArticles = () => {
 
   return (
     <SectionContainer header="Add An Article">
+      <Helmet>
+        <title>Add Article | Pixel News</title>
+      </Helmet>
       <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input

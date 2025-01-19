@@ -7,6 +7,7 @@ import useContextValue from "../../../hooks/useContextValue";
 import AllArticlesTableRow from "./AllArticlesTableRow";
 import { useSecureDataLoader } from "../../../hooks/useDataLoader";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AllArticlesDashboard = () => {
   const { loading } = useContextValue();
@@ -41,6 +42,9 @@ const AllArticlesDashboard = () => {
   if (loading || isLoading || analyticsLoading) return <Loading />;
   return (
     <DashboardContainer header="All Articles">
+      <Helmet>
+        <title>All Articles Dashboard | Pixel News</title>
+      </Helmet>
       {articles.length <= 0 ? (
         <NoDataFound />
       ) : (

@@ -4,6 +4,7 @@ import Loading from "../../components/loading/Loading";
 import SectionContainer from "../../components/container/SectionContainer";
 import useContextValue from "../../hooks/useContextValue";
 import PremiumBadge from "../../components/badges/PremiumBadge";
+import { Helmet } from "react-helmet";
 
 const ArticleDetails = () => {
   const { userRole, user, loading } = useContextValue();
@@ -28,6 +29,9 @@ const ArticleDetails = () => {
   if (isLoading || loading) return <Loading />;
   return (
     <SectionContainer header="Article Details">
+      <Helmet>
+        <title>Article Details | Pixel News</title>
+      </Helmet>
       <div
         className={`relative max-w-3xl mx-auto bg-white p-5 md:p-10 rounded-3xl shadow-xl ${
           isPaid && "border border-yellow-600"

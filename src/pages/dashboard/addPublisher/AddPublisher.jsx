@@ -1,11 +1,15 @@
 import Swal from "sweetalert2";
 import DashboardContainer from "../../../components/container/DashboardContainer";
 import { usePublicAPI, useSecureAPI } from "../../../hooks/useAPI_Links";
+import { Helmet } from "react-helmet";
+import useContextValue from "../../../hooks/useContextValue";
+import Loading from "../../../components/loading/Loading";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddPublisher = () => {
   const secureAPI = useSecureAPI();
   const publicAPI = usePublicAPI();
+  const {loading} = useContextValue()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,8 +55,12 @@ const AddPublisher = () => {
         });
     }
   };
+  if (loading) return <Loading />;
   return (
     <DashboardContainer header="Add Publisher">
+      <Helmet>
+        <title>Add Publishers | Pixel News</title>
+      </Helmet>
       <div className="w-full h-[calc(100vh-12rem)] flex items-center justify-center">
         <div className="w-full max-w-xl mx-auto p-5 md:p-8 bg-white rounded-lg shadow-xl">
           <form onSubmit={handleSubmit} className="flex flex-col">

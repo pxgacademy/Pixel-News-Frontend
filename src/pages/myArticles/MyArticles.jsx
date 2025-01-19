@@ -4,6 +4,7 @@ import useContextValue from "../../hooks/useContextValue";
 import MyArticlesTableRow from "./MyArticlesTableRow";
 import NoDataFound from "../../components/loading/NoDataFound";
 import useMyArticles from "../../hooks/useMyArticles";
+import { Helmet } from "react-helmet";
 
 const MyArticles = () => {
   const { loading } = useContextValue();
@@ -12,6 +13,9 @@ const MyArticles = () => {
   if (loading || isLoading) return <Loading />;
   return (
     <SectionContainer header="My Articles">
+      <Helmet>
+        <title>My Articles | Pixel News</title>
+      </Helmet>
       {articles.length <= 0 ? (
         <NoDataFound />
       ) : (

@@ -12,6 +12,7 @@ import ReactSelect from "../../components/formInputs/ReactSelect";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import reactSelectOptions from "../../components/formInputs/ReactSelectOptions";
+import { Helmet } from "react-helmet";
 const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const UpdateArticles = () => {
@@ -136,6 +137,9 @@ const UpdateArticles = () => {
 
   return (
     <SectionContainer>
+      <Helmet>
+        <title>Update Articles | Pixel News</title>
+      </Helmet>
       <h4 className="text-4xl font-semibold text-center">Update Articles</h4>
 
       <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
