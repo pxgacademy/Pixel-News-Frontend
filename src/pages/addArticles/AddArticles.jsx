@@ -21,7 +21,6 @@ const AddArticles = () => {
   const [publishers, isLoading] = usePublicDataLoader("/publishers");
   const [articles, articlesLoading] = useMyArticles();
 
-  console.log(userRole);
 
   useEffect(() => {
     if (articles.length >= 1 && !userRole.isPremium) {

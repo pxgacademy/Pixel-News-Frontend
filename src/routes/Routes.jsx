@@ -34,6 +34,7 @@ export const router = createBrowserRouter([
       {
         path: "all-articles",
         element: <AllArticles />,
+        loader: () => axios(`${API_LINK}/publishers`),
       },
       {
         path: "premium-articles",
