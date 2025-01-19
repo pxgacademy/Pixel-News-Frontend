@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import ViewCountBadge from "../../../components/badges/ViewCountBadge";
 
 const Slider = () => {
-  const [articles, isLoading] = usePublicDataLoader("/slider-articles");
+  const [articles =[], isLoading] = usePublicDataLoader("/slider-articles");
 
   if (isLoading) return <Loading />;
   return (
