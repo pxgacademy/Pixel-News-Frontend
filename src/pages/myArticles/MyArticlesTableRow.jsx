@@ -52,9 +52,17 @@ const MyArticlesTableRow = ({ article, serial, refetch }) => {
         </td>
         <td>
           {isPaid ? (
-            <img className="w-10 mx-auto" src={premiumIcon} />
+            <img
+              referrerPolicy="no-referrer"
+              className="w-10 mx-auto"
+              src={premiumIcon}
+            />
           ) : (
-            <img className="w-10 mx-auto" src={closeIcon} />
+            <img
+              referrerPolicy="no-referrer"
+              className="w-10 mx-auto"
+              src={closeIcon}
+            />
           )}
         </td>
         <td className="text-center">

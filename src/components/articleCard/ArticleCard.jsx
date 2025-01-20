@@ -24,6 +24,7 @@ const ArticleCard = ({ article }) => {
       {isPaid && <PremiumBadge />}
       <div className="w-full h-72 overflow-hidden">
         <img
+          referrerPolicy="no-referrer"
           className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover rounded-lg"
           src={image}
           alt=""
@@ -36,6 +37,7 @@ const ArticleCard = ({ article }) => {
 
       <div className="grow mt-3 flex items-center gap-x-2">
         <img
+          referrerPolicy="no-referrer"
           className="w-14 max-h-10 object-cover"
           src={publisher?.photo}
           alt=""

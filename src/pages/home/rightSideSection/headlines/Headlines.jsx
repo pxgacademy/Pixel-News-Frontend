@@ -28,21 +28,36 @@ const Headlines = () => {
               disabledStyle="text-xl text-left font-semibold mb-2 text-darkThree"
             />
             {article?.isPaid && (
-              <img className="w-6" src={premiumIcon} alt="" />
+              <img
+                referrerPolicy="no-referrer"
+                className="w-6"
+                src={premiumIcon}
+                alt=""
+              />
             )}
           </p>
         ))}
       </div>
 
       <div className="mt-8">
-        <img className="w-full" src={adsOne.image} alt="" />
+        <img
+          referrerPolicy="no-referrer"
+          className="w-full"
+          src={adsOne.image}
+          alt=""
+        />
 
         <p className="text-xl font-semibold mt-4">{adsOne.title}</p>
         <p>{adsOne.description}</p>
       </div>
 
       <div className="mt-8">
-        <img className="w-full" src={adsTwo.image} alt="" />
+        <img
+          referrerPolicy="no-referrer"
+          className="w-full"
+          src={adsTwo.image}
+          alt=""
+        />
 
         <p className="text-xl font-semibold mt-4">{adsTwo.title}</p>
         <p>{adsTwo.description}</p>

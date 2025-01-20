@@ -14,6 +14,7 @@ const MostPopular = () => {
       <div className="lg:flex">
         <div className="flex-1 flex items-end justify-start relative min-h-96 md:min-h-[400px] lg:min-h-[460px] max-h-[500px]">
           <img
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
             src={common?.image}
             alt=""
@@ -50,6 +51,7 @@ const MostPopular = () => {
               className="flex-1 flex items-end justify-start relative min-h-96 md:min-h-[200px] lg:min-h-[230px] lg:max-h-[250px]"
             >
               <img
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
                 src={article?.image}
                 alt=""

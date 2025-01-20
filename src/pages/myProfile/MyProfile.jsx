@@ -117,6 +117,7 @@ const MyProfile = () => {
       <section className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl cursor-default">
         <div className="w-full min-h-40 max-h-64 relative flex overflow-hidden">
           <img
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
             src={coverImage ? coverImage : banner}
             alt=""
@@ -160,6 +161,7 @@ const MyProfile = () => {
           <div className="md:col-span-2 bg-gradient-to-bl from-[#BD3F6E] to-[#6D2E72]">
             <div className="relative flex justify-center items-start">
               <img
+                referrerPolicy="no-referrer"
                 className="absolute w-16 h-16 md:w-40 md:h-40 lg:w-52 lg:h-52 object-cover rounded-full -translate-y-[50%]"
                 src={image}
                 alt="Profile picture"

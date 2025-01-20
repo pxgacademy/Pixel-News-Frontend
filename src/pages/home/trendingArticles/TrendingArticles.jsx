@@ -17,6 +17,7 @@ const TrendingArticles = () => {
         <div className="relative">
           <ViewCountBadge count={common?.viewCount} />
           <img
+            referrerPolicy="no-referrer"
             className="w-full min-h-80 object-cover"
             src={common?.image}
             alt=""
@@ -51,6 +52,7 @@ const TrendingArticles = () => {
               <div key={article?._id} className="flex gap-x-2">
                 <div className="w-[25%] h-28 border">
                   <img
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                     src={article?.image}
                     alt=""

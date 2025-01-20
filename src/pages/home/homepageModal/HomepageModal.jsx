@@ -17,9 +17,9 @@ const HomepageModal = () => {
   }, []);
 
   const handleModal = () => {
-    setIsModalOpen(false)
+    setIsModalOpen(false);
     setHomepageModalDone(true);
-  }
+  };
 
   return (
     <div>
@@ -44,7 +44,7 @@ const HomepageModal = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 mt-14">
                 <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
-                  <img src={newsImg1} alt="" />
+                  <img referrerPolicy="no-referrer" src={newsImg1} alt="" />
                   <p className="text-2xl font-semibold mb-4">Basic</p>
                   <p>
                     $
@@ -60,17 +60,14 @@ const HomepageModal = () => {
                     <span>+ Bonuses</span>
                   </div>
                   <Link to="/subscriptions">
-                    <button
-                      onClick={handleModal}
-                      className="btn w-full mt-5"
-                    >
+                    <button onClick={handleModal} className="btn w-full mt-5">
                       Buy Now
                     </button>
                   </Link>
                 </div>
 
                 <div className="max-w-96 mx-auto relative z-[2] md:scale-[105%] md:-translate-y-2 bg-black/10 backdrop-blur p-5 text-white border border-white">
-                  <img src={newsImg2} alt="" />
+                  <img referrerPolicy="no-referrer" src={newsImg2} alt="" />
                   <p className="text-2xl font-semibold mb-4 text-white">
                     Premium
                   </p>
@@ -98,7 +95,7 @@ const HomepageModal = () => {
                 </div>
 
                 <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
-                  <img src={newsImg3} alt="" />
+                  <img referrerPolicy="no-referrer" src={newsImg3} alt="" />
                   <p className="text-2xl font-semibold mb-4">Platinum</p>
                   <p>
                     $

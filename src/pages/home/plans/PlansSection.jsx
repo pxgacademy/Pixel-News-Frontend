@@ -13,7 +13,7 @@ const PlansSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 mt-14">
         <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
-          <img src={newsImg1} alt="" />
+          <img referrerPolicy="no-referrer" src={newsImg1} alt="" />
           <p className="text-2xl font-semibold mb-4">Basic</p>
           <p>
             $<span className="text-7xl font-semibold font-righteous">02</span>
@@ -31,7 +31,7 @@ const PlansSection = () => {
         </div>
 
         <div className="max-w-96 mx-auto relative z-[2] md:scale-[105%] md:-translate-y-2 bg-black/10 backdrop-blur p-5 text-white border border-white">
-          <img src={newsImg2} alt="" />
+          <img referrerPolicy="no-referrer" src={newsImg2} alt="" />
           <p className="text-2xl font-semibold mb-4 text-white">Premium</p>
           <p>
             $<span className="text-7xl font-semibold font-righteous">15</span>
@@ -51,7 +51,7 @@ const PlansSection = () => {
         </div>
 
         <div className="max-w-96 mx-auto bg-black/10 backdrop-blur p-5 text-white border border-white/20">
-          <img src={newsImg3} alt="" />
+          <img referrerPolicy="no-referrer" src={newsImg3} alt="" />
           <p className="text-2xl font-semibold mb-4">Platinum</p>
           <p>
             $<span className="text-7xl font-semibold font-righteous">25</span>

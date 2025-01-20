@@ -14,16 +14,8 @@ const AllArticlesTableRow = ({ article, serial, refetch }) => {
   const [handleDelete] = useDelete();
   const [handleUpdate] = usePatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {
-    _id,
-    title,
-    status,
-    isPaid,
-    date,
-    creator,
-    publisher,
-    userInfo,
-  } = article || {};
+  const { _id, title, status, isPaid, date, creator, publisher, userInfo } =
+    article || {};
 
   const handleModal = (action) => {
     setIsModalOpen(action);
@@ -86,6 +78,7 @@ const AllArticlesTableRow = ({ article, serial, refetch }) => {
         <td className="min-w-72">
           <div className="flex gap-x-3 items-center">
             <img
+              referrerPolicy="no-referrer"
               className="w-12 h-12 rounded-md"
               src={userInfo?.image}
               alt=""

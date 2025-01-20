@@ -33,6 +33,7 @@ const Navbar = () => {
               <button className="w-11 h-11 border border-darkFour rounded-full overflow-hidden p-1">
                 {user?.photoURL ? (
                   <img
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover rounded-full"
                     src={user.photoURL}
                   />
@@ -45,15 +46,15 @@ const Navbar = () => {
         ) : (
           <div>
             <Link to="/login">
-            <button className="btn bg-[#ff1493] hover:bg-[#f70084] text-white">
-              Login
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="btn bg-darkBlue hover:bg-darkBlue/80 text-white ml-2">
-              Register
-            </button>
-          </Link>
+              <button className="btn bg-[#ff1493] hover:bg-[#f70084] text-white">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="btn bg-darkBlue hover:bg-darkBlue/80 text-white ml-2">
+                Register
+              </button>
+            </Link>
           </div>
         )}
       </div>

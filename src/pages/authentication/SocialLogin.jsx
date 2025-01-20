@@ -49,6 +49,7 @@ const SocialLogin = () => {
           className="w-10 h-10 rounded-full overflow-hidden"
         >
           <img
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
             src={googleIcon}
             alt="G"
@@ -56,6 +57,7 @@ const SocialLogin = () => {
         </button>
         <button className="w-10 h-10 rounded-full overflow-hidden">
           <img
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
             src={githubIcon}
             alt="G"
@@ -63,6 +65,7 @@ const SocialLogin = () => {
         </button>
         <button className="w-10 h-10 rounded-full overflow-hidden">
           <img
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
             src={facebookIcon}
             alt="F"

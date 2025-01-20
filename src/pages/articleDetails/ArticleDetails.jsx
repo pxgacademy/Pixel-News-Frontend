@@ -39,6 +39,7 @@ const ArticleDetails = () => {
       >
         {isPaid && <PremiumBadge />}
         <img
+          referrerPolicy="no-referrer"
           className="w-full max-h-96 object-cover rounded-t-xl"
           src={image}
           alt={title}
@@ -61,6 +62,7 @@ const ArticleDetails = () => {
         <div className="md:flex">
           <div className="md:flex-1 mt-3 flex items-center gap-x-2">
             <img
+              referrerPolicy="no-referrer"
               className="w-14 max-h-10 object-cover"
               src={publisher?.photo}
               alt=""
@@ -73,6 +75,7 @@ const ArticleDetails = () => {
 
           <div className="md:flex-1 mt-3 flex items-center gap-x-2">
             <img
+              referrerPolicy="no-referrer"
               className="w-12 max-h-12 object-cover"
               src={userInfo?.image}
               alt=""

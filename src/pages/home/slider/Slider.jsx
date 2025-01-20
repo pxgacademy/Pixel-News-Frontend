@@ -24,6 +24,7 @@ const Slider = () => {
         renderThumbs={() =>
           articles.map((article, i) => (
             <img
+              referrerPolicy="no-referrer"
               key={i + 1}
               src={article.image}
               className="w-14 h-14 object-cover"
@@ -38,6 +39,7 @@ const Slider = () => {
             </div>
             <div className="w-full">
               <img
+                referrerPolicy="no-referrer"
                 className="w-full min-h-96 md:min-h-[500px] lg:min-h-[600px] max-h-[600px]"
                 src={article.image}
                 alt={article.title}

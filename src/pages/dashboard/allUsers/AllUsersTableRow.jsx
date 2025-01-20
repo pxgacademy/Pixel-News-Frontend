@@ -24,6 +24,7 @@ const AllUsersTableRow = ({ singleUser, serial, refetch }) => {
         <td className="min-w-14">
           <div className="w-12 h-12">
             <img
+              referrerPolicy="no-referrer"
               className="w-full h-full object-cover rounded-md"
               src={image}
               alt=""
