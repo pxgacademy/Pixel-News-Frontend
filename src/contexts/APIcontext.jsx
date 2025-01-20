@@ -61,7 +61,14 @@ function APIcontext({ children }) {
           if (token?.data?.token) {
             localStorage.setItem("access_token", token.data.token);
             const result = await axios.get(
-              `${API_LINK}/users/role/${currentUser?.email}`
+              `${API_LINK}/users/role/${currentUser?.email}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                  )}`,
+                },
+              }
             );
             if (result?.data?.isPremium) {
               const date = Date.now();
@@ -69,11 +76,17 @@ function APIcontext({ children }) {
 
               if (date > expiryDate) {
                 setUserRole({ isAdmin: result.data.isAdmin, isPremium: false });
-                const update = await axios.patch(
+                await axios.patch(
                   `${API_LINK}/users/role/update/${currentUser?.email}`,
-                  { isPremium: false, paidDate: 0 }
+                  { isPremium: false, paidDate: 0 },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access_token"
+                      )}`,
+                    },
+                  }
                 );
-                console.log(update.data);
               } else {
                 delete result.data.paidDate;
                 setUserRole(result.data);

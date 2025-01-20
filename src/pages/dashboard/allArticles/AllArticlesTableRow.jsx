@@ -20,7 +20,6 @@ const AllArticlesTableRow = ({ article, serial, refetch }) => {
     status,
     isPaid,
     date,
-    decline_message,
     creator,
     publisher,
     userInfo,
