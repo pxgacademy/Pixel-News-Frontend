@@ -10,7 +10,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const [isCopyTrx, setIsCopyTrx] = useState(false);
   const [trxId, setTrxId] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
@@ -52,13 +51,13 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) setErrorMessage(error.message);
-    else console.log("[paymentMethod]", paymentMethod);
+    // else console.log("[paymentMethod]", paymentMethod);
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -75,7 +74,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
       setProcessing(false);
       setErrorMessage(error.message);
     } else {
-      //   console.log("[paymentIntent]", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         // save the payment history in the database
         const history = {
@@ -88,8 +86,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
           "/subscription-histories",
           history
         );
-        console.log(data?.paymentHistory?.insertedId);
-        console.log(data?.updateUser?.modifiedCount);
         if (
           data?.paymentHistory?.insertedId &&
           data?.updateUser?.modifiedCount > 0
@@ -113,16 +109,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
         }
       }
     }
-  };
-
-  const handleCopyTrxId = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigator.clipboard.writeText(trxId);
-    setIsCopyTrx(true);
-    setTimeout(() => {
-      setIsCopyTrx(false);
-    }, 2000);
   };
 
   return (
@@ -163,26 +149,6 @@ const CheckoutForm = ({ priceAndTime = {}, handleModal }) => {
       {errorMessage && (
         <p className="text-error normal-case text-sm">{errorMessage}</p>
       )}
-
-      {
-        // TODO: delete trxId
-        trxId && (
-          <div className="normal-case text-sm cursor-default space-y-2 relative">
-            <p>Your payment was successful. Thank you for subscription!</p>
-            <p>
-              Your TrxID is:{" "}
-              <button onClick={(e) => handleCopyTrxId(e)} className="text-info">
-                {trxId}{" "}
-                {isCopyTrx && (
-                  <span className="bg-slate-600 px-1 py-[2px] text-white rounded">
-                    Copied!
-                  </span>
-                )}
-              </button>
-            </p>
-          </div>
-        )
-      }
     </form>
   );
 };

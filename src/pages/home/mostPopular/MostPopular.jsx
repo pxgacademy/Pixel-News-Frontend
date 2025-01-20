@@ -4,7 +4,6 @@ import { usePublicDataLoader } from "../../../hooks/useDataLoader";
 
 const MostPopular = () => {
   const [data = [], isLoading] = usePublicDataLoader("/articles/most-popular");
-  console.log(data);
 
   const [common, ...articles] = data || [];
 

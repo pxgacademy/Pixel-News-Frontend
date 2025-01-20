@@ -33,9 +33,7 @@ const useUpdate = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const { data: updatedData } = await secureAPI.put(link, data);
-          // TODO: check data successfully updated or not
-          console.log(updatedData);
+          await secureAPI.put(link, data);
 
           // check refetch is required or not
           if (refetch) refetch();

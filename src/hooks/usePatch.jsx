@@ -33,13 +33,9 @@ const usePatch = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const { data: updatedData } = await secureAPI.patch(link, data);
-          // TODO: check data successfully updated or not
-          console.log(updatedData);
-
+          await secureAPI.patch(link, data);
           // check refetch is required or not
           if (refetch) refetch();
-
           // show success message
           Swal.fire({
             title: successTitle,

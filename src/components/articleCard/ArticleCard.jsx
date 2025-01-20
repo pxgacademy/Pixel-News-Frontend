@@ -11,8 +11,7 @@ const ArticleCard = ({ article }) => {
     article;
 
   const handleViewCount = async () => {
-    const { data } = await publicAPI.patch(`/articles/view-count/${_id}`, {});
-    console.log(data);
+    await publicAPI.patch(`/articles/view-count/${_id}`, {});
   };
 
   return (
