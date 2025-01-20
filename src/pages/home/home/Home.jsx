@@ -5,6 +5,7 @@ import Headlines from "../rightSideSection/headlines/Headlines";
 import Slider from "../slider/Slider";
 import Statistics from "../statistics/Statistics";
 import TrendingArticles from "../trendingArticles/TrendingArticles";
+import HomepageModal from "../homepageModal/HomepageModal";
 
 const Home = () => {
   return (
@@ -32,6 +33,8 @@ const Home = () => {
       <section className="w-full max-w-screen-2xl mx-auto py-16 bg-[#FDF1D3]">
         <Statistics />
       </section>
+
+      <HomepageModal/>
     </>
   );
 };

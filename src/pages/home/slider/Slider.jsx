@@ -4,7 +4,6 @@ import { Carousel } from "react-responsive-carousel";
 import TextSnippet from "../../../components/textSnippet/TextSnippet";
 import { usePublicDataLoader } from "../../../hooks/useDataLoader";
 import Loading from "../../../components/loading/Loading";
-import { Link } from "react-router-dom";
 import ViewCountBadge from "../../../components/badges/ViewCountBadge";
 import PremiumButton from "../../../components/premiumButton/PremiumButton";
 

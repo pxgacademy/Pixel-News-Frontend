@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ViewCountBadge from "../../../components/badges/ViewCountBadge";
 import Loading from "../../../components/loading/Loading";
 import TextSnippet from "../../../components/textSnippet/TextSnippet";
@@ -36,8 +35,8 @@ const TrendingArticles = () => {
           <p className="mt-2">
             <TextSnippet text={common?.description} length={250} />
             <PremiumButton
-              link={`/articles/details/${common._id}`}
-              isPaid={common.isPaid}
+              link={`/articles/details/${common?._id}`}
+              isPaid={common?.isPaid}
               btnText="Read More"
               width=""
               btnStyle="text-blue-600 underline"
@@ -49,11 +48,11 @@ const TrendingArticles = () => {
         <div>
           <div className="flex flex-col gap-3">
             {articles.map((article) => (
-              <div key={article._id} className="flex gap-x-2">
+              <div key={article?._id} className="flex gap-x-2">
                 <div className="w-[25%] h-28 border">
                   <img
                     className="w-full h-full object-cover"
-                    src={article.image}
+                    src={article?.image}
                     alt=""
                   />
                 </div>
@@ -66,8 +65,8 @@ const TrendingArticles = () => {
                   <p className="text-sm">
                     <TextSnippet text={article?.description} length={80} />
                     <PremiumButton
-                      link={`/articles/details/${article._id}`}
-                      isPaid={article.isPaid}
+                      link={`/articles/details/${article?._id}`}
+                      isPaid={article?.isPaid}
                       btnText="Read More"
                       width=""
                       btnStyle="text-blue-600 underline"

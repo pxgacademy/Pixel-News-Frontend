@@ -18,6 +18,7 @@ function APIcontext({ children }) {
   const API_LINK = import.meta.env.VITE_API_LINK;
   const googleProvider = new GoogleAuthProvider();
   // const [isDark, setIsDark] = useState(false);
+  const [homepageModalDone, setHomepageModalDone] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState({
@@ -116,6 +117,8 @@ function APIcontext({ children }) {
   }, []);
 
   const value = {
+    homepageModalDone,
+    setHomepageModalDone,
     userRole,
     setUserRole,
     user,

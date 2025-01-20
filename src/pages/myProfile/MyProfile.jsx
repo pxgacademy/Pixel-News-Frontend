@@ -69,7 +69,7 @@ const MyProfile = () => {
 
   const handleChangeProfile = async (e) => {
     e.preventDefault();
-    handleModal(false)
+    handleModal(false);
     try {
       const update = {
         name: e.target.name.value,
@@ -115,7 +115,7 @@ const MyProfile = () => {
         <title>Profile | Pixel News</title>
       </Helmet>
       <section className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl cursor-default">
-        <div className="w-full max-h-64 relative flex overflow-hidden">
+        <div className="w-full min-h-40 max-h-64 relative flex overflow-hidden">
           <img
             className="w-full h-full object-cover"
             src={coverImage ? coverImage : banner}

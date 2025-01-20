@@ -1,14 +1,11 @@
 import PropTypes from "prop-types";
 import TextSnippet from "../textSnippet/TextSnippet";
-import { Link } from "react-router-dom";
-import useContextValue from "../../hooks/useContextValue";
 import PremiumBadge from "../badges/PremiumBadge";
 import ViewCountBadge from "../badges/ViewCountBadge";
 import { usePublicAPI } from "../../hooks/useAPI_Links";
 import PremiumButton from "../premiumButton/PremiumButton";
 
 const ArticleCard = ({ article }) => {
-  const { userRole } = useContextValue();
   const publicAPI = usePublicAPI();
   const { _id, image, title, description, viewCount, publisher, isPaid } =
     article;
@@ -35,7 +32,7 @@ const ArticleCard = ({ article }) => {
       </div>
       <h2 className="mt-3 text-2xl font-semibold font-davidLibre">{title}</h2>
       <p className="mt-2">
-        <TextSnippet text={description} />
+        <TextSnippet text={description} length={100} />
       </p>
 
       <div className="grow mt-3 flex items-center gap-x-2">

@@ -13,11 +13,19 @@ const NavbarLinks = ({ setIsNavOpen }) => {
       <NavLink onClick={() => setIsNavOpen(false)} to="/all-articles">
         All Articles
       </NavLink>
+      {userRole?.isPremium ? (
+        <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
+          Premium Articles
+        </NavLink>
+      ) : userRole?.isAdmin ? (
+        <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
+          Premium Articles
+        </NavLink>
+      ) : (
+        ""
+      )}
       {user && (
         <>
-          <NavLink onClick={() => setIsNavOpen(false)} to="/premium-articles">
-            Premium Articles
-          </NavLink>
           <NavLink onClick={() => setIsNavOpen(false)} to="/subscriptions">
             Subscription
           </NavLink>
