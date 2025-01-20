@@ -32,7 +32,7 @@ const AllUsersTableRow = ({ singleUser, serial, refetch }) => {
         </td>
         <td className="min-w-36">{name}</td>
         <td className="min-w-36">{email}</td>
-        <td className="text-center">
+        <td className="text-center min-w-36">
           {isAdmin ? (
             <span className="bg-green-600 px-4 py-2 rounded-full text-white cursor-default">
               Admin
