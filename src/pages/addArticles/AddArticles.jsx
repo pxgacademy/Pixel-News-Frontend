@@ -17,13 +17,13 @@ const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
 
 const AddArticles = () => {
   const [isPermitted, setIsPermitted] = useState(true);
+  const [arrArticleLoading, setAddArticleLoading] = useState(false);
   const { user, loading, userRole } = useContextValue();
   const publicAPI = usePublicAPI();
   const secureAPI = useSecureAPI();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [publishers, isLoading] = usePublicDataLoader("/publishers");
   const [articles, articlesLoading] = useMyArticles();
-
 
   useEffect(() => {
     if (articles.length >= 1 && !userRole.isPremium) {
@@ -44,6 +44,7 @@ const AddArticles = () => {
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
+    setAddArticleLoading(true);
     try {
       const { data: res } = await publicAPI.post(imgApi, imageFile, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -65,7 +66,7 @@ const AddArticles = () => {
           // clear the image input field after successful upload
           reset();
           setValue("tags", []);
-          navigate('/my-articles')
+          navigate("/my-articles");
           Swal.fire({
             title: "Success!",
             text: "Article added successfully",
@@ -87,6 +88,8 @@ const AddArticles = () => {
         text: error.message,
         icon: "error",
       });
+    } finally {
+      setAddArticleLoading(false);
     }
   };
 
@@ -150,9 +153,16 @@ const AddArticles = () => {
 
           <label className="block text-center mt-4">
             <button
-            disabled={!isPermitted}
-            className="btn px-10 btn-accent text-white disabled:bg-error disabled:text-white">
-              {isPermitted? 'Add Article':'Get Premium to Add More Articles'}
+              disabled={!isPermitted || arrArticleLoading}
+              className="btn px-10 btn-accent text-white disabled:bg-error disabled:text-white"
+            >
+              {arrArticleLoading ? (
+                <span className="loading loading-spinner text-white"></span>
+              ) : isPermitted ? (
+                "Add Article"
+              ) : (
+                "Get Premium to Add More Articles"
+              )}
             </button>
           </label>
         </form>

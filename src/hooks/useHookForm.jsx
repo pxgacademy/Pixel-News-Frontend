@@ -8,7 +8,8 @@ const HookForm = ({
   onSubmit,
   defaultValues = {},
   btnName,
-  btnStyle = "btn btn-info text-white mt-4 w-full",
+  btnStyle = "btn btn-info disabled:bg-info disabled:text-white text-white mt-4 w-full",
+  disabled = false,
 }) => {
   const [isEye, setIsEye] = useState(false);
   const inputStyle =
@@ -87,7 +88,7 @@ const HookForm = ({
         </div>
       ))}
       <div className="text-center">
-        <button type="submit" className={`${btnStyle}`}>
+        <button disabled={disabled} type="submit" className={`${btnStyle}`}>
           {btnName}
         </button>
       </div>
@@ -100,7 +101,8 @@ HookForm.propTypes = {
   defaultValues: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   btnName: PropTypes.string.isRequired,
-  btnStyle: PropTypes.string,
+  btnStyle: PropTypes.element,
+  disabled: PropTypes.bool,
 };
 
 export default HookForm;

@@ -7,9 +7,11 @@ import useContextValue from "../../hooks/useContextValue";
 import useCreateUser from "../../hooks/useCreateUser";
 import Swal from "sweetalert2";
 import Loading from "../../components/loading/Loading";
+import { useState } from "react";
 
 const Register = () => {
   const imgApi = import.meta.env.VITE_IMGBB_API_LINK;
+  const [regLoading, setRegLoading] = useState(false);
   const { createUser, updateUser, setUser } = useContextValue();
   const publicAPI = usePublicAPI();
   const [handleCreateUser, isLoading] = useCreateUser();
@@ -75,6 +77,7 @@ const Register = () => {
   ];
 
   const handleSubmit = async (data, reset) => {
+    setRegLoading(true);
     try {
       const imageFile = { image: data.image[0] };
       const { data: res } = await publicAPI.post(imgApi, imageFile, {
@@ -90,7 +93,7 @@ const Register = () => {
           name: data?.name,
           image: data?.image,
           createdAt: user?.metadata?.createdAt,
-          lastLoginAt: user?.metadata?.lastLoginAt
+          lastLoginAt: user?.metadata?.lastLoginAt,
         });
         reset();
         navigate(state?.goTo || "/");
@@ -101,10 +104,12 @@ const Register = () => {
         text: error.message,
         icon: "error",
       });
+    } finally {
+      setRegLoading(false);
     }
   };
 
-  if(isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <SectionContainer>
@@ -116,7 +121,18 @@ const Register = () => {
         <SocialLogin />
 
         <div className="divider my-6">or register with</div>
-        <HookForm fields={fields} onSubmit={handleSubmit} btnName="Register" />
+        <HookForm
+          fields={fields}
+          onSubmit={handleSubmit}
+          btnName={
+            regLoading ? (
+              <span className="loading loading-spinner text-white"></span>
+            ) : (
+              <span>Login</span>
+            )
+          }
+          disabled={regLoading}
+        />
         <p className="text-center text-sm mt-2">
           Already have an account? Please{" "}
           <Link to="/login" className="text-info">

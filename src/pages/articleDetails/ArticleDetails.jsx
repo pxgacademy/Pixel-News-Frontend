@@ -69,7 +69,7 @@ const ArticleDetails = () => {
             />
             <div>
               <p className="underline">Publisher:</p>
-              <p className="font-semibold">{publisher.name}</p>
+              <p className="font-semibold">{publisher?.name}</p>
             </div>
           </div>
 

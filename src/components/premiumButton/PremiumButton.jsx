@@ -18,10 +18,7 @@ const PremiumButton = ({
     if (userRole.isAdmin) {
       return (
         <Link to={link}>
-          <button
-            onClick={onClick && onClick}
-            className={`${btnStyle} ${width}`}
-          >
+          <button onClick={onClick} className={`${btnStyle} ${width}`}>
             {btnText}
           </button>
         </Link>
@@ -36,7 +33,7 @@ const PremiumButton = ({
   } else {
     return (
       <Link to={link}>
-        <button onClick={onClick && onClick} className={`${btnStyle} ${width}`}>
+        <button onClick={onClick} className={`${btnStyle} ${width}`}>
           {btnText}
         </button>
       </Link>

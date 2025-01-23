@@ -61,7 +61,7 @@ const AddPublisher = () => {
       <Helmet>
         <title>Add Publishers | Pixel News</title>
       </Helmet>
-      <div className="w-full h-[calc(100vh-12rem)] flex items-center justify-center">
+      <div className="w-full h-[calc(100vh-16rem)] flex items-center justify-center">
         <div className="w-full max-w-xl mx-auto p-5 md:p-8 bg-white rounded-lg shadow-xl">
           <form onSubmit={handleSubmit} className="flex flex-col">
             <label>Publisher Name</label>

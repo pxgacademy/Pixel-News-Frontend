@@ -12,8 +12,9 @@ import useContextValue from "../../hooks/useContextValue";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser, setUser, } = useContextValue();
+  const { signInUser, setUser } = useContextValue();
   const navigate = useNavigate();
+  const [loginLoading, setLoginLoading] = useState(false);
   const { state } = useLocation();
   const [captcha, setCaptcha] = useState("");
   const [errMsg, setErrMsg] = useState(null);
@@ -56,6 +57,8 @@ const Login = () => {
       setCaptcha("");
     }
 
+    setLoginLoading(true);
+
     try {
       const { user } = await signInUser(data.email, data.password);
       if (user?.email) {
@@ -82,6 +85,8 @@ const Login = () => {
         text: error.message,
         icon: "error",
       });
+    } finally {
+      setLoginLoading(false);
     }
   };
 
@@ -103,7 +108,18 @@ const Login = () => {
           />
           {errMsg && <p className="text-error">{errMsg}</p>}
         </label>
-        <HookForm fields={fields} onSubmit={handleSubmit} btnName="Login" />
+        <HookForm
+          fields={fields}
+          onSubmit={handleSubmit}
+          btnName={
+            loginLoading ? (
+              <span className="loading loading-spinner text-white"></span>
+            ) : (
+              <span>Login</span>
+            )
+          }
+          disabled={loginLoading}
+        />
 
         <p className="text-center text-sm mt-2">
           Do not have an account? Please{" "}
