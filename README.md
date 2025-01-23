@@ -2,6 +2,8 @@
 
 ### Live Site Link: [Visit Pixel News](https://assignment-12-abd.web.app)
 
+### Backend Repo Link: [Visit Backend Repo](https://github.com/pxgacademy/Pixel-News-Backend)
+
 ## Description
 
 Pixel News is a comprehensive and dynamic newspaper website designed to revolutionize how users consume news. This platform not only delivers trending and premium articles but also offers a seamless user experience with advanced features like subscription plans, detailed analytics, and an intuitive admin dashboard. With Pixel News, users can explore news like never before while publishers and administrators manage content effortlessly.
