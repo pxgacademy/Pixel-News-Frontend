@@ -6,6 +6,7 @@ import useContextValue from "../../hooks/useContextValue";
 import { FaUser } from "react-icons/fa";
 import useSignoutUser from "../../hooks/useSignoutUser";
 import NavbarLinks from "./NavbarLinks";
+import ThemeModeBtn from "../../components/themeModeBtn/ThemeModeBtn";
 
 const Navbar = () => {
   const { user } = useContextValue();
@@ -24,6 +25,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center">
+        <ThemeModeBtn/>
         {user ? (
           <>
             <button onClick={signOut} className="btn btn-sm btn-ghost mr-2">
