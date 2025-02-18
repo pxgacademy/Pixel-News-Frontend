@@ -19,11 +19,11 @@ const MyArticles = () => {
       {articles.length <= 0 ? (
         <NoDataFound />
       ) : (
-        <div className="overflow-x-auto bg-white rounded-3xl p-3 md:p-6 mt-8">
+        <div className="overflow-x-auto bg-white dark:bg-black/20 rounded-3xl p-3 md:p-6 mt-8 shadow-xl">
           <table className="table table-zebra rounded-xl overflow-hidden">
             {/* head */}
             <thead>
-              <tr className="uppercase bg-sky-200">
+              <tr className="uppercase bg-sky-200 dark:bg-sky-950 text-gray-800 dark:text-white">
                 <th>#</th>
                 <th>Title</th>
                 <th className="text-center">Status</th>
