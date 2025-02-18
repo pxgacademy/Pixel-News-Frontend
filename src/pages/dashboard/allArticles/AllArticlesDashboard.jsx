@@ -49,11 +49,11 @@ const AllArticlesDashboard = () => {
         <NoDataFound />
       ) : (
         <>
-          <div className="overflow-x-auto bg-white rounded-3xl p-3 md:p-6 mt-8">
-            <table className="table table-zebra rounded-xl overflow-hidden">
+           <div className="overflow-x-auto bg-white dark:bg-black/20 rounded-3xl p-3 md:p-6 mt-8 shadow-xl">
+           <table className="table table-zebra rounded-xl overflow-hidden">
               {/* head */}
               <thead>
-                <tr className="uppercase bg-sky-200">
+              <tr className="uppercase bg-sky-200 dark:bg-sky-950 text-gray-800 dark:text-white">
                   <th>#</th>
                   <th>Author Information</th>
                   <th>Title and Publisher</th>

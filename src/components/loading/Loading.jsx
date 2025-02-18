@@ -15,7 +15,7 @@ const Loading = ({
 
   return (
     <section
-      className={`${style} max-w-screen-2xl mx-auto flex items-center justify-center bg-[#FDF1D3]`}
+      className={`${style} max-w-screen-2xl mx-auto flex items-center justify-center bg-gray-50 dark:bg-[#1d3335]`}
     >
       <Lottie animationData={loaderGif} loop={true} />
     </section>

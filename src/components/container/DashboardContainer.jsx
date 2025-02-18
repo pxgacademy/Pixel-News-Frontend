@@ -5,7 +5,7 @@ const DashboardContainer = ({ children, header }) => {
     <section className="w-full">
       {header && (
         <div className="w-full min-h-24 px-5 bg-[url(../../assets/images/section-header-image.png)] flex items-center justify-center">
-          <h2 className="text-3xl md:text-4xl font-bold uppercase font-righteous cursor-default">
+          <h2 className="text-3xl md:text-4xl font-bold uppercase font-righteous cursor-default text-gray-800">
             {header}
           </h2>
         </div>
