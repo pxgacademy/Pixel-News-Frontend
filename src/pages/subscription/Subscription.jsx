@@ -35,7 +35,7 @@ const Subscription = () => {
       <Helmet>
         <title>Subscriptions | Pixel News</title>
       </Helmet>
-      <div className="relative max-w-screen-2xl min-h-96 mx-auto flex md:items-center justify-center md:justify-start">
+      <div className="relative max-w-screen-2xl min-h-96 mx-auto flex md:items-center justify-center md:justify-start text-gray-800">
         <div className="hidden md:block">
           <img
             referrerPolicy="no-referrer"

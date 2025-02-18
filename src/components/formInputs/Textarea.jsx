@@ -12,7 +12,7 @@ const Textarea = ({
   clearStyle = false,
 }) => {
   const inputStyle =
-    "w-full bg-white mt-1 border border-darkFive rounded-lg p-3 outline-none focus:border-darkBlue";
+    "w-full bg-white dark:bg-transparent mt-1 border border-darkFive dark:border-darkTwo rounded-lg p-3 outline-none focus:border-darkBlue";
   return (
     <label className={`block ${labelStyle}`}>
       <label htmlFor={htmlFor} className="ml-2">

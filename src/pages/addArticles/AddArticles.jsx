@@ -100,7 +100,7 @@ const AddArticles = () => {
       <Helmet>
         <title>Add Article | Pixel News</title>
       </Helmet>
-      <div className="max-w-3xl mx-auto p-5 md:p-10 rounded mt-6 shadow-lg bg-white ">
+      <div className="max-w-3xl mx-auto p-5 md:p-10 rounded-xl mt-6 shadow-lg bg-white dark:bg-black/15">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             htmlFor="image"
