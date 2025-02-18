@@ -4,7 +4,7 @@ const HeaderBanner = () => {
   return (
     <section className="w-full max-w-screen-2xl mx-auto">
       <section className="w-full font-inter py-3 px-5 bg-darkBlue text-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full max-w-[1420px] mx-auto">
           <div className="md:flex items-center justify-between">
             <div>
               <p className="text-4xl text-center md:text-left md:text-5xl font-girassol">

@@ -2,7 +2,7 @@ import crown from "../../assets/icons/crown.png";
 
 const PremiumBadge = () => {
   return (
-    <div className="absolute z-10 left-3 top-3 w-12 h-12 flex items-center justify-center bg-white p-1 rounded-lg shadow-md">
+    <div className="absolute z-10 left-5 top-5 w-8 h-8 flex items-center justify-center bg-white p-1 rounded-full shadow-md">
       <img
         referrerPolicy="no-referrer"
         src={crown}

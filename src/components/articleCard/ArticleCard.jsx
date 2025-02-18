@@ -16,16 +16,16 @@ const ArticleCard = ({ article }) => {
 
   return (
     <div
-      className={`bg-white p-3 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default group  ${
-        isPaid && "border border-yellow-600"
+      className={`bg-white dark:bg-gray-900 p-5 lg:p-7 rounded-xl overflow-hidden flex flex-col shadow-lg relative cursor-default group border ${
+        isPaid? "border-yellow-600/60" : 'border-gray-400 dark:border-gray-600'
       }`}
     >
       <ViewCountBadge count={viewCount} />
       {isPaid && <PremiumBadge />}
-      <div className="w-full h-72 overflow-hidden">
+      <div className="w-full h-72 rounded-lg overflow-hidden">
         <img
           referrerPolicy="no-referrer"
-          className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover rounded-lg"
+          className="transition-all duration-200 group-hover:scale-[105%] w-full h-full object-cover "
           src={image}
           alt=""
         />
