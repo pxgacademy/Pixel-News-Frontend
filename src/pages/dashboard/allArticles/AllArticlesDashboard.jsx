@@ -35,6 +35,8 @@ const AllArticlesDashboard = () => {
     enabled: !!analytics?.articles,
   });
 
+
+
   useEffect(() => {
     refetch();
   }, [selectedPage, analytics?.articles]);

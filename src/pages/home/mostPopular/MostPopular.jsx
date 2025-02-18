@@ -47,7 +47,7 @@ const MostPopular = () => {
         <div className="flex-1 grid md:grid-cols-2">
           {articles.map((article) => (
             <div
-              key={article?._d}
+              key={article?._id}
               className="flex-1 flex items-end justify-start relative min-h-96 md:min-h-[200px] lg:min-h-[230px] lg:max-h-[250px]"
             >
               <img

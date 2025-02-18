@@ -71,6 +71,7 @@ const AllArticlesTableRow = ({ article, serial, refetch }) => {
     e.target.reset();
   };
 
+
   return (
     <>
       <tr>
@@ -81,7 +82,7 @@ const AllArticlesTableRow = ({ article, serial, refetch }) => {
               referrerPolicy="no-referrer"
               className="w-12 h-12 rounded-md"
               src={userInfo?.image}
-              alt=""
+              alt={userInfo?.name}
             />
             <div>
               <p>{userInfo?.name}</p>

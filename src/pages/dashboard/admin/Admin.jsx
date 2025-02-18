@@ -17,7 +17,7 @@ const Admin = () => {
       </Helmet>
       <PieChart />
       <ColumnChart />
-      <LineChart />
+      {/* <LineChart /> */}
     </DashboardContainer>
   );
 };
