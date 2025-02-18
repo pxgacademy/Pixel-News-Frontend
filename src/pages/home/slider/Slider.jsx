@@ -12,7 +12,7 @@ const Slider = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="w-full">
+    <div className="w-full text-gray-800">
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
@@ -34,7 +34,7 @@ const Slider = () => {
       >
         {articles.map((article, i) => (
           <div key={i + 1} className="relative flex items-center">
-            <div className=" md:text-xl">
+            <div className=" md:text-xl absolute top-0 lg:right-9">
               <ViewCountBadge count={article.viewCount} />
             </div>
             <div className="w-full">

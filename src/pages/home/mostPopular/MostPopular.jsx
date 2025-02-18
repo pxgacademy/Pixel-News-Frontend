@@ -9,7 +9,7 @@ const MostPopular = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="px-5 lg:px-10">
+    <div>
       <h3 className="text-xl font-semibold mb-3">Most Popular</h3>
       <div className="lg:flex">
         <div className="flex-1 flex items-end justify-start relative min-h-96 md:min-h-[400px] lg:min-h-[460px] max-h-[500px]">
