@@ -33,14 +33,14 @@ const ArticleDetails = () => {
         <title>Article Details | Pixel News</title>
       </Helmet>
       <div
-        className={`relative max-w-3xl mx-auto bg-white p-5 md:p-10 rounded-3xl shadow-xl ${
+        className={`relative max-w-3xl mx-auto bg-white dark:bg-black/20 p-5 md:p-10 rounded-3xl shadow-2xl dark:shadow-xl ${
           isPaid && "border border-yellow-600"
         }`}
       >
         {isPaid && <PremiumBadge />}
         <img
           referrerPolicy="no-referrer"
-          className="w-full max-h-96 object-cover rounded-t-xl"
+          className="w-full max-h-96 object-cover rounded-t-2xl"
           src={image}
           alt={title}
         />
@@ -61,12 +61,14 @@ const ArticleDetails = () => {
 
         <div className="md:flex">
           <div className="md:flex-1 mt-3 flex items-center gap-x-2">
+            <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
             <img
               referrerPolicy="no-referrer"
-              className="w-14 max-h-10 object-cover"
+              className="w-14 max-h-14 object-cover"
               src={publisher?.photo}
               alt=""
             />
+            </div>
             <div>
               <p className="underline">Publisher:</p>
               <p className="font-semibold">{publisher?.name}</p>
@@ -74,12 +76,15 @@ const ArticleDetails = () => {
           </div>
 
           <div className="md:flex-1 mt-3 flex items-center gap-x-2">
+          <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
             <img
               referrerPolicy="no-referrer"
-              className="w-12 max-h-12 object-cover"
+              className="w-14 max-h-14 object-cover"
               src={userInfo?.image}
               alt=""
             />
+            </div>
+            
             <div>
               <p className="font-semibold">{userInfo?.name}</p>
               <p className="font-semibold">{creator}</p>

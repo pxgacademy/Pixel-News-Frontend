@@ -22,6 +22,7 @@ const AllArticles = () => {
     { value: "all", label: "All Categories" },
     ...reactSelectOptions,
   ];
+  
   const publishers = [{ name: "All Publishers" }, ...allPublishers];
 
   const {
@@ -56,7 +57,7 @@ const AllArticles = () => {
       <Helmet>
         <title> All Articles | Pixel News</title>
       </Helmet>
-      <div className="w-full mx-auto bg-gray-50 dark:bg-gray-800 shadow-lg dark:shadow-xl py-4 px-3 rounded-xl border dark:border-gray-700">
+      <div className="w-full mx-auto bg-gray-50 dark:bg-black/10 shadow dark:shadow-xl py-4 px-3 rounded-xl border dark:border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-2">
           <label className="block w-full h-12">
             <select
@@ -68,7 +69,7 @@ const AllArticles = () => {
                 <option
                   key={category.value}
                   value={category.value}
-                  className="bg-white dark:bg-darkThree text-darkTwo dark:text-lightTwo"
+                  className="bg-white dark:bg-darkOne text-darkTwo dark:text-white"
                 >
                   {category.label}
                 </option>
@@ -86,7 +87,7 @@ const AllArticles = () => {
                 <option
                   key={publisher.name}
                   value={publisher.name}
-                  className="bg-white dark:bg-darkThree text-darkTwo dark:text-lightTwo"
+                  className="bg-white dark:bg-darkOne text-darkTwo dark:text-white"
                 >
                   {publisher.name}
                 </option>
@@ -120,7 +121,7 @@ const AllArticles = () => {
       {articles.length === 0 ? (
         <NoDataFound />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {articles.map((article) => (
             <ArticleCard key={article._id} article={article} />
           ))}
