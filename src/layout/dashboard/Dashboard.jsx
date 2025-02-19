@@ -12,10 +12,13 @@ const Dashboard = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [signOut] = useSignoutUser();
   const { isDark } = useContextValue();
-  
-  return (
-    <section className={`${isDark && "dark"} relative flex  w-full max-w-screen-2xl mx-auto min-h-screen`}>
 
+  return (
+    <section
+      className={`${
+        isDark && "dark"
+      } relative flex  w-full max-w-screen-2xl mx-auto min-h-screen`}
+    >
       <aside
         className={`fixed lg:relative z-20 transition-all duration-200 ${
           isMenu ? "left-0 lg:left-0 lg:top-0" : "-left-80 lg:left-0 lg:top-0"
@@ -50,6 +53,9 @@ const Dashboard = () => {
 
         {/* Main Layout Links */}
         <div className="dashboardNavLinks flex flex-col gap-2">
+          <NavLink onClick={() => setIsMenu(false)} to="/my-profile">
+            <button>My Profile</button>
+          </NavLink>
           <NavLink onClick={() => setIsMenu(false)} to="/">
             <button>Home</button>
           </NavLink>
@@ -75,11 +81,8 @@ const Dashboard = () => {
             <MdLogout className="rotate-180" /> Logout
           </button>
         </div>
-
-
-        
       </aside>
-      <section className="flex-1 relative min-h-screen bg-[#FDF1D3] dark:bg-[#1A1D21] text-gray-800 dark:text-gray-100 overflow-y-clip">
+      <section className="flex-1 relative min-h-screen bg-gray-50 dark:bg-[#1A1D21] text-gray-800 dark:text-gray-100 overflow-y-clip">
         <button
           onClick={() => setIsMenu(true)}
           className="fixed z-10 flex items-center justify-center w-10 h-10 lg:hidden top-3 left-3 p-2 rounded-md shadow-md bg-gray-200 dark:bg-gray-800 text-lg"
@@ -87,7 +90,7 @@ const Dashboard = () => {
           <FiMenu />
         </button>
         <div className="fixed lg:absolute z-10 w-10 h-10 flex items-center justify-center top-3 left-14 lg:left-auto lg:right-3 rounded-md bg-gray-200 dark:bg-gray-800 shadow-md">
-          <ThemeModeBtn/>
+          <ThemeModeBtn />
         </div>
 
         <Outlet />

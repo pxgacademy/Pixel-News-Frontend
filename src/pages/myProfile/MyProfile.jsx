@@ -124,7 +124,7 @@ const MyProfile = () => {
           />
 
           {/* icons */}
-          <div className="absolute right-1 md:right-5 bottom-1 md:bottom-5 flex gap-3">
+          <div className="absolute text-gray-800 right-1 md:right-5 bottom-1 md:bottom-5 flex gap-3">
             <label
               htmlFor="editCover"
               className="relative bg-white rounded text-center transition-all duration-300 flex items-center justify-center group w-10 h-10 hover:w-28 cursor-pointer"
@@ -185,7 +185,7 @@ const MyProfile = () => {
           </div>
 
           {/* right side  */}
-          <div className="md:col-span-3 bg-white p-5 flex items-center">
+          <div className="md:col-span-3 bg-white dark:bg-black/20 p-5 flex items-center">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
               <div className="text-center border rounded-lg shadow-md p-5">
                 <span className="text-7xl inline-block">
@@ -226,11 +226,11 @@ const MyProfile = () => {
         id="my_modal_5"
         className="modal modal-bottom sm:modal-middle md:w-[600px] mx-auto"
       >
-        <div className="modal-box">
+        <div className="modal-box text-gray-800 dark:text-gray-100">
           <div className="relative">
             <button
               onClick={() => handleModal(false)}
-              className="absolute -right-5 -top-5 btn btn-sm btn-circle text-black"
+              className="absolute -right-5 -top-5 btn btn-sm btn-circle text-black dark:text-white"
             >
               <IoClose />
             </button>
@@ -240,36 +240,36 @@ const MyProfile = () => {
           </h4>
           <form onSubmit={handleChangeProfile}>
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium">
                 Name
               </label>
               <input
                 type="text"
                 name="name"
-                className="block mt-1 w-full px-3 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                className="block mt-1 w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 dark:bg-transparent rounded-md focus:outline-none focus:border-blue-500"
                 placeholder="type your name"
                 defaultValue={name}
               />
             </div>
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium">
                 Email
               </label>
               <input
                 type="email"
-                className="block mt-1 w-full px-3 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                className="block mt-1 w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 dark:bg-transparent rounded-md focus:outline-none focus:border-blue-500"
                 value={email}
                 readOnly
               />
             </div>
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium">
                 Choose an Image
               </label>
               <input
                 type="file"
                 name="image"
-                className="block w-full px-3 py-2 text-sm text-gray-700"
+                className="block w-full px-3 py-2 text-sm"
               />
             </div>
 
