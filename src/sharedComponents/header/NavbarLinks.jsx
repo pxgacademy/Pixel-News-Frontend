@@ -35,6 +35,9 @@ const NavbarLinks = ({ setIsNavOpen }) => {
           Dashboard
         </NavLink>
       )}
+      <NavLink onClick={() => setIsNavOpen(false)} to="/contact">
+        Contact
+      </NavLink>
     </>
   );
 };

@@ -31,3 +31,9 @@ html {
 .css-13cymwt-control {
   min-height: 500px;
 }
+
+/* Contact Form Design */
+#contact_form input,
+#contact_form textarea {
+  @apply w-full px-4 py-2 bg-transparent border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none;
+}

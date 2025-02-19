@@ -20,6 +20,7 @@ import AddPublisher from "../pages/dashboard/addPublisher/AddPublisher";
 import AllArticlesDashboard from "../pages/dashboard/allArticles/AllArticlesDashboard";
 import MyProfile from "../pages/myProfile/MyProfile";
 import ErrorPage from "../components/errorPage/ErrorPage";
+import Contact from "../pages/contact/Contact";
 
 const API_LINK = import.meta.env.VITE_API_LINK;
 
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
         path: "login",
         element: <Login />,
       },
@@ -133,6 +138,6 @@ export const router = createBrowserRouter([
   // error page
   {
     path: "/*",
-    element: <ErrorPage/>,
+    element: <ErrorPage />,
   },
 ]);

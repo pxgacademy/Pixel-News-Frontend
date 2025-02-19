@@ -92,7 +92,6 @@ const Dashboard = () => {
         <div className="fixed lg:absolute z-10 w-10 h-10 flex items-center justify-center top-3 left-14 lg:left-auto lg:right-3 rounded-md bg-gray-200 dark:bg-gray-800 shadow-md">
           <ThemeModeBtn />
         </div>
-
         <Outlet />
       </section>
     </section>
